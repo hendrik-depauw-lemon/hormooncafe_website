@@ -44,10 +44,5 @@
         "prettier": "3.3.3",
         "typescript": "5.7.3"
     },
-    "packageManager": "yarn@4.7.0",
-    "resolutions": {
-        "@boostercloud/framework-common-helpers": "patch:@boostercloud/framework-common-helpers@npm%3A3.4.3#~/.yarn/patches/@boostercloud-framework-common-helpers-npm-3.1.0-bb1d1e56e5.patch",
-        "@boostercloud/framework-core": "patch:@boostercloud/framework-core@npm%3A3.4.3#./.yarn/patches/@boostercloud-framework-core-npm-2.13.1-a4d0a093cb.patch",
-        "graphql": "patch:graphql@npm%3A16.10.0#~/.yarn/patches/graphql-npm-16.9.0-a36f71845f.patch"
-    }
+    "packageManager": "yarn@4.7.0"
 }
