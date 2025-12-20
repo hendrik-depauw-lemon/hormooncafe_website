@@ -1,0 +1,13 @@
+{
+    "editor.codeActionsOnSave": { "source.fixAll": "explicit" },
+    "typescript.preferences.importModuleSpecifier": "relative",
+
+    "cucumber.features": [
+        "packages/e2e-web/features/**/*.feature",
+        "packages/e2e-api/features/**/*.feature"
+    ],
+    "cucumber.glue": [
+        "packages/e2e-web/steps/**/*.steps.ts",
+        "packages/e2e-api/steps/**/*.steps.ts"
+    ]
+}

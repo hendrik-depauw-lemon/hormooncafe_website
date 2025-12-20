@@ -1,0 +1,45 @@
+name: Deploy Frontend
+
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: 'Deploy to which environment?'
+                required: true
+                type: choice
+                options:
+                    - dev
+                    - staging
+                    - production
+    workflow_call:
+        inputs:
+            environment:
+                description: 'Deploy to which environment?'
+                required: true
+                type: string
+
+permissions:
+    id-token: write
+    contents: write
+
+jobs:
+    push-to-branch:
+        name: Push to branch
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.ref }}
+
+            - name: Set git config
+              run: |
+                  git config --global user.name 'github-actions[bot]'
+                  git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+            - name: Push to branch
+              run: |
+                  git push origin ${{ github.ref }}:refs/heads/${{ inputs.environment }} --force
+            - name: Log to Github Actions Summary
+              run: |
+                  echo "## 🚀 Frontend ${{ github.ref_name }} was deployed on ${{ inputs.environment }}" >> $GITHUB_STEP_SUMMARY

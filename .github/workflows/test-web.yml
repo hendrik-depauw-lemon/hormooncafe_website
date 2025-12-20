@@ -1,0 +1,38 @@
+name: Test Web
+
+on:
+    pull_request:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        environment: test
+
+        steps:
+            - uses: actions/checkout@v4
+            - name: Use Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20.x'
+                  cache: 'yarn'
+            - name: Install dependencies
+              run: yarn --immutable
+            - name: Build Web
+              run: yarn build web
+            - name: Run Web
+              run: yarn start web >> output-web.log &
+            - name: Update playwright
+              run: npx playwright install
+            - name: Run tests
+              env:
+                  CUCUMBER_PUBLISH_TOKEN: ${{ secrets.CUCUMBER_PUBLISH_TOKEN }}
+              run: yarn test-web
+            - name: Archive logs
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: logs
+                  path: |
+                      ./output-web.log
+                      ./packages/e2e-web/usage.json
+                  retention-days: 14

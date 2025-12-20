@@ -1,0 +1,52 @@
+name: Create Full Release
+run-name: Create Full Release - ${{ github.event.inputs.version-level }} by ${{ github.actor }}
+
+on:
+    workflow_dispatch:
+        inputs:
+            version-level:
+                description: 'Version bump level'
+                required: true
+                type: choice
+                options:
+                    - patch
+                    - minor
+                    - major
+
+permissions:
+    id-token: write # Needed to authenticate to AWS (push image to ECR)
+    contents: write # Needed to create tag and release
+
+jobs:
+    bump-versions:
+        name: Bump Versions
+        runs-on: ubuntu-latest
+        outputs:
+            tag: ${{ steps.bump-versions.outputs.tag }}
+        steps:
+            - uses: actions/checkout@v4
+            - uses: ./.github/actions/bump-versions
+              id: bump-versions
+              with:
+                  version-level: ${{ github.event.inputs.version-level }}
+    github-release:
+        name: Create Github Release - ${{ needs.bump-versions.outputs.tag }}
+        needs: bump-versions
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: ./.github/actions/github-release
+              with:
+                  tag: ${{ needs.bump-versions.outputs.tag }}
+    build-api:
+        name: Build API - ${{ needs.bump-versions.outputs.tag }}
+        needs: [bump-versions, github-release]
+        environment: central-services
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: ./.github/actions/build-api
+              with:
+                  tag: ${{ needs.bump-versions.outputs.tag }}
+                  aws_account_id: ${{ vars.AWS_ACCOUNT_ID }}
+                  aws_region: eu-west-1

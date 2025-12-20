@@ -1,0 +1,52 @@
+name: Deploy All Services
+run-name: Deploy All Services - ${{ github.ref_name }} to ${{ github.event.inputs.environment }} by ${{ github.actor }}
+
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: 'Deploy to which environment?'
+                required: true
+                type: choice
+                options:
+                    - dev
+                    - staging
+                    - production
+
+jobs:
+    check-is-tag:
+        name: Only allow tag deployments
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check if the ref is a tag
+              run: |
+                  if [[ "${{ github.ref }}" != refs/tags/* ]]; then
+                      echo "This workflow can only be triggered by tags. Attempted to run from ref name '${{ github.ref_name }}'" >> $GITHUB_STEP_SUMMARY
+                      exit 1
+                  fi
+    deploy-api:
+        name: Deploy API - ${{ github.ref_name }} to ${{ github.event.inputs.environment }}
+        needs: check-is-tag
+        uses: ./.github/workflows/deploy-api.yml
+        with:
+            environment: ${{ github.event.inputs.environment }}
+        secrets: inherit
+
+    deploy-frontend:
+        name: Deploy Frontend - ${{ github.ref_name }} to ${{ github.event.inputs.environment }}
+        needs: deploy-api
+        uses: ./.github/workflows/deploy-frontend.yml
+        with:
+            environment: ${{ github.event.inputs.environment }}
+        secrets: inherit
+
+    summary:
+        name: Deployment Summary
+        needs: [deploy-api, deploy-frontend]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Log to Github Actions Summary
+              run: |
+                  echo "## 🚀 Complete Deployment" >> $GITHUB_STEP_SUMMARY
+                  echo "Successfully deployed both API and Frontend to **${{ github.event.inputs.environment }}**" >> $GITHUB_STEP_SUMMARY
+                  echo "Version: **${{ github.ref_name }}**" >> $GITHUB_STEP_SUMMARY

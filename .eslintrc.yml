@@ -1,0 +1,27 @@
+root: true
+plugins:
+    - simple-import-sort
+    - unused-imports
+    - '@typescript-eslint'
+env:
+    node: true
+extends:
+    - eslint:recommended
+    - 'plugin:@typescript-eslint/recommended'
+    - prettier
+parserOptions:
+    project: ['./packages/**/tsconfig.json']
+rules:
+    '@typescript-eslint/no-unused-vars': off
+    '@typescript-eslint/no-explicit-any': error
+    '@typescript-eslint/no-non-null-assertion': error
+    simple-import-sort/imports: error
+    unused-imports/no-unused-imports-ts: error
+    unused-imports/no-unused-vars-ts:
+        [
+            error,
+            { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
+        ]
+#  add import rules so we don't import from other modules
+
+# Gherkin-lint toevoegen voor feature files (verplicht annotatie voor story en feature)

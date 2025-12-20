@@ -1,0 +1,26 @@
+name: Create Github Release
+description: Creates a new Github release for the given tag
+
+inputs:
+    tag:
+        description: 'Tag to release'
+        required: true
+
+runs:
+    using: 'composite'
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+          with:
+              ref: ${{ inputs.tag }}
+        - name: Release
+          # v2.2.2
+          uses: softprops/action-gh-release@da05d552573ad5aba039eaac05058a918a7bf631
+          with:
+              name: ${{ inputs.tag }}
+              tag_name: ${{ inputs.tag }}
+              generate_release_notes: true
+        - name: Post Info to GitHub Summary
+          shell: bash
+          run: |
+              echo "## 🚀 Release ${{ inputs.tag }}" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,283 @@
+input AddExampleInput {
+  description: String
+  title: String!
+}
+
+input AfterCursor {
+  skip: Int
+}
+
+input ChangeExampleInput {
+  description: String
+  id: ID!
+  title: String!
+}
+
+"""Date custom scalar type"""
+scalar Date
+
+input DatePropertyFilter {
+  eq: Date
+  gt: Date
+  gte: Date
+  in: [Date]
+  isDefined: Boolean
+  lt: Date
+  lte: Date
+  ne: Date
+}
+
+enum EntityType {
+  BoosterDataMigrationEntity
+  Example
+}
+
+type EventQueryResponse {
+  createdAt: String!
+  deletedAt: String
+  entity: String!
+  entityID: ID!
+  requestID: ID!
+  type: String!
+  user: User
+  value: JSON!
+}
+
+enum EventType {
+  BoosterDataMigrationFinished
+  BoosterDataMigrationStarted
+  ExampleAdded
+  ExampleChanged
+}
+
+type Example1ReadModel {
+  createdAt: Date!
+  description: String
+  id: ID!
+  nested: NestedExample!
+  nestedList: [NestedExample!]!
+  test: [UnionExample!]!
+  title: String!
+  updatedAt: Date!
+}
+
+type Example1ReadModelConnection {
+  count: Int!
+  items: [Example1ReadModel!]!
+}
+
+input Example1ReadModelFilter {
+  and: [Example1ReadModelFilter]
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  nested: NestedExamplePropertyFilter
+  nestedList: NestedExampleArrayPropertyFilter
+  not: Example1ReadModelFilter
+  or: [Example1ReadModelFilter]
+  title: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input Example1ReadModelSortBy {
+  createdAt: orderProperty
+  description: orderProperty
+  id: orderProperty
+  nested: NestedExamplePropertySortBy
+  nestedList: NestedExamplePropertySortBy
+  title: orderProperty
+  updatedAt: orderProperty
+}
+
+input Example1ReadModelSubscriptionFilter {
+  and: [Example1ReadModelSubscriptionFilter]
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  nested: NestedExamplePropertyFilter
+  nestedList: NestedExampleArrayPropertyFilter
+  not: Example1ReadModelSubscriptionFilter
+  or: [Example1ReadModelSubscriptionFilter]
+  title: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+type Example2ReadModel {
+  createdAt: Date!
+  description: String
+  id: ID!
+  test: [Example1ReadModel!]!
+  title: String!
+  updatedAt: Date!
+}
+
+type Example2ReadModelConnection {
+  count: Int!
+  items: [Example2ReadModel!]!
+}
+
+input Example2ReadModelFilter {
+  and: [Example2ReadModelFilter]
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  not: Example2ReadModelFilter
+  or: [Example2ReadModelFilter]
+  title: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input Example2ReadModelSortBy {
+  createdAt: orderProperty
+  description: orderProperty
+  id: orderProperty
+  title: orderProperty
+  updatedAt: orderProperty
+}
+
+input Example2ReadModelSubscriptionFilter {
+  and: [Example2ReadModelSubscriptionFilter]
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  not: Example2ReadModelSubscriptionFilter
+  or: [Example2ReadModelSubscriptionFilter]
+  title: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+input ListExample1ReadModelFilter {
+  and: [ListExample1ReadModelFilter]
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  id: UUIDPropertyFilter
+  nested: NestedExamplePropertyFilter
+  nestedList: NestedExampleArrayPropertyFilter
+  not: ListExample1ReadModelFilter
+  or: [ListExample1ReadModelFilter]
+  title: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input ListExample2ReadModelFilter {
+  and: [ListExample2ReadModelFilter]
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  id: UUIDPropertyFilter
+  not: ListExample2ReadModelFilter
+  or: [ListExample2ReadModelFilter]
+  title: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+type Mutation {
+  AddExample(input: AddExampleInput!): ID!
+  ChangeExample(input: ChangeExampleInput!): ID!
+}
+
+type NestedExample {
+  randomNumber: Float!
+  title: String!
+}
+
+input NestedExampleArrayPropertyFilter {
+  includes: JSON
+  isDefined: Boolean
+}
+
+input NestedExamplePropertyFilter {
+  and: [NestedExamplePropertyFilter]
+  isDefined: Boolean
+  not: NestedExamplePropertyFilter
+  or: [NestedExamplePropertyFilter]
+  randomNumber: NumberPropertyFilter
+  title: StringPropertyFilter
+}
+
+input NestedExamplePropertySortBy {
+  randomNumber: orderProperty
+  title: orderProperty
+}
+
+input NumberPropertyFilter {
+  eq: Float
+  gt: Float
+  gte: Float
+  in: [Float]
+  isDefined: Boolean
+  lt: Float
+  lte: Float
+  ne: Float
+}
+
+type Query {
+  Example1ReadModel(id: ID!): Example1ReadModel
+  Example1ReadModels(filter: Example1ReadModelFilter): [Example1ReadModel!]! @deprecated(reason: "Method is deprecated. Use List* methods")
+  Example2ReadModel(id: ID!): Example2ReadModel
+  Example2ReadModels(filter: Example2ReadModelFilter): [Example2ReadModel!]! @deprecated(reason: "Method is deprecated. Use List* methods")
+  GetRandomExample: Example1ReadModel
+  GetRole: Role!
+  ListExample1ReadModels(afterCursor: AfterCursor, filter: ListExample1ReadModelFilter, limit: Int, sortBy: Example1ReadModelSortBy): Example1ReadModelConnection!
+  ListExample2ReadModels(afterCursor: AfterCursor, filter: ListExample2ReadModelFilter, limit: Int, sortBy: Example2ReadModelSortBy): Example2ReadModelConnection!
+  eventsByEntity(entity: EntityType!, entityID: ID, from: String, limit: Int, to: String): [EventQueryResponse]
+  eventsByType(from: String, limit: Int, to: String, type: EventType!): [EventQueryResponse]
+}
+
+enum Role {
+  Admin
+  SuperAdmin
+  User
+}
+
+input StringPropertyFilter {
+  beginsWith: String
+  contains: String
+  eq: String
+  gt: String
+  gte: String
+  iRegex: String
+  in: [String]
+  isDefined: Boolean
+  lt: String
+  lte: String
+  ne: String
+  regex: String
+}
+
+type Subscription {
+  Example1ReadModel(id: ID!): Example1ReadModel
+  Example1ReadModels(filter: Example1ReadModelSubscriptionFilter): Example1ReadModel
+  Example2ReadModel(id: ID!): Example2ReadModel
+  Example2ReadModels(filter: Example2ReadModelSubscriptionFilter): Example2ReadModel
+}
+
+input UUIDPropertyFilter {
+  beginsWith: String
+  contains: String
+  eq: ID
+  in: [ID]
+  isDefined: Boolean
+  ne: ID
+}
+
+union UnionExample = Example1ReadModel | Example2ReadModel
+
+type User {
+  id: String
+  roles: [String!]
+  username: String!
+}
+
+enum orderProperty {
+  ASC
+  DESC
+}

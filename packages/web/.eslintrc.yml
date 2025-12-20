@@ -1,0 +1,36 @@
+extends:
+    - next/core-web-vitals
+    - plugin:jsx-a11y/strict
+settings:
+    next:
+        rootDir: 'packages/web/'
+rules:
+    'no-restricted-imports':
+        [
+            error,
+            {
+                paths:
+                    [
+                        {
+                            name: 'next-intl/server',
+                            importNames: ['getLocale'],
+                            'message': "Please import the default export as getLocale from '@/src/i18n/getLocale'",
+                        },
+                        {
+                            name: 'next-intl',
+                            importNames: ['useLocale'],
+                            'message': "Please import the default export as useLocale from '@/src/hooks/useLocale'",
+                        },
+                        {
+                            name: 'next-intl',
+                            importNames: ['useTimeZone'],
+                            'message': "Please use useTimeZone from '@/src/i18n/useTimeZone'",
+                        },
+                        {
+                            name: 'date-fns',
+                            importNames: ['format'],
+                            'message': "Please use formatInTimeZone from 'date-fns-tz'",
+                        },
+                    ],
+            },
+        ]

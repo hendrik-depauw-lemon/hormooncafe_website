@@ -1,0 +1,60 @@
+name: Bump Versions
+description: Bumps the version of the root and all sub packages
+
+inputs:
+    version-level:
+        description: 'Version bump level'
+        required: true
+outputs:
+    tag:
+        description: 'Created tag'
+        value: ${{ steps.push-tag.outputs.tag }}
+
+runs:
+    using: 'composite'
+    steps:
+        - name: Check out code
+          uses: actions/checkout@v4
+          with:
+              ref: ${{ github.ref }}
+
+        - name: Set git config
+          shell: bash
+          run: |
+              git config --global user.name 'github-actions[bot]'
+              git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+        - name: Bump version
+          shell: bash
+          run: |
+              # Check if version-level is set
+              if [ -z "${{ inputs.version-level }}" ]; then
+                  echo "Version type not specified. Exiting."
+                  exit 1
+              fi
+
+              yarn workspaces foreach --worktree --exclude node_modules version ${{ inputs.version-level }}
+
+        - name: Push version
+          shell: bash
+          run: |
+              git add package.json
+              git add **/package.json
+              git status
+              git commit -m "[ci] chore: bump versions"
+              git push
+
+        - name: Push tag
+          shell: bash
+          id: push-tag
+          run: |
+              TAG=v$(cat package.json | jq -r '.version')
+              git tag $TAG
+              git push origin tag $TAG
+              echo "tag=$TAG" >> $GITHUB_OUTPUT
+              echo "TAG=$TAG" >> $GITHUB_ENV
+
+        - name: Log to Github Actions Summary
+          shell: bash
+          run: |
+              echo "## 🚀 Version bumped to ${{ env.TAG }}" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,63 @@
+name: Check for JSON in GraphQL schema
+
+on:
+    pull_request:
+
+jobs:
+    check-json-in-graphql-schema:
+        runs-on: ubuntu-latest
+
+        services:
+            mongodb:
+                image: mongo:latest
+                ports:
+                    - 27017:27017
+
+        steps:
+            - uses: actions/checkout@v4
+            - name: Use Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20.x'
+                  cache: 'yarn'
+            - name: Install dependencies
+              run: yarn --immutable
+            - name: Run ts-patch
+              working-directory: packages/api
+              run: yarn ts-patch
+            - name: Build api
+              run: yarn build api
+            - name: Run api
+              run: |
+                  yarn start api &> output-api.log &
+                  echo "Waiting for the backend to start..."
+                  while true; do
+                    if grep -q "Started server on port 4000" output-api.log; then
+                      echo "Backend started successfully!"
+                      break
+                    fi
+                    sleep 1
+                  done
+              timeout-minutes: 1
+            - name: Generate GraphQL schema
+              working-directory: packages/api
+              run: yarn generate-domain
+            - name: Check for JSON in GraphQL schema
+              working-directory: packages/api
+              run: |
+                  matches=$(awk '!/value: JSON/ && !/includes: JSON/ && !/diff: JSON/ && !/newSnapshot: JSON/ && !/oldSnapshot: JSON/ && /: JSON/' schema.graphql)
+                  if [[ -n "$matches" ]]; then
+                    echo "The following lines matched:"
+                    echo "$matches"
+                    exit 1
+                  else
+                    echo "No problematic ': JSON' patterns found."
+                  fi
+            - name: Archive logs
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: logs
+                  path: |
+                      ./output-api.log
+                  retention-days: 14

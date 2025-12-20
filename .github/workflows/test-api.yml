@@ -1,0 +1,105 @@
+name: Test Api
+
+on:
+    pull_request:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        environment: local
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Install Keeper KSM
+              run: pip3 install keeper-secrets-manager-cli
+
+            - name: Use Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20.x'
+                  cache: 'yarn'
+
+            - name: Install dependencies
+              run: yarn --immutable
+
+            - name: Run ts-patch
+              working-directory: ./packages/api
+              run: yarn ts-patch
+
+            - name: Install pm2
+              run: npm install pm2 -g
+
+            - name: Build api
+              run: yarn build api
+
+            - name: Run chmod 777
+              run: |
+                  sudo chmod 777 /var/run/docker.sock
+                  ls -l /var/run/docker.sock
+
+            - name: Prepare docker compose
+              run: chmod -R +x packages/external_services/localstack/init/*.sh
+            - name: Docker Compose Action
+              # v2.2.0 = 8be2d741e891ac9b8ac20825e6f3904149599925
+              uses: hoverkraft-tech/compose-action@8be2d741e891ac9b8ac20825e6f3904149599925
+              with:
+                  compose-file: './packages/external_services/docker-compose.yml'
+
+            - name: Run api
+              env:
+                  KSM_CONFIG: ${{ secrets.KSM_CONFIG }}
+              run: pm2 start yarn --name api -l output-api.log -- start-e2e api
+
+            - name: Run tests
+              env:
+                  CUCUMBER_PUBLISH_TOKEN: ${{ secrets.CUCUMBER_PUBLISH_TOKEN }}
+              run: yarn test-api
+
+            - name: Stop api
+              if: always()
+              run: pm2 stop api
+
+            - name: Upload lcov Artifact
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: coverage-report
+                  path: ./packages/api/coverage/lcov.info
+
+            - name: Archive logs
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: logs
+                  path: |
+                      ./output-api.log
+                      ./packages/e2e-api/usage.json
+                  retention-days: 14
+    sonar_cloud:
+        name: Sonar Cloud
+        needs: test
+        if: always()
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+
+            - name: Download coverage report
+              uses: actions/download-artifact@v4.1.8
+              with:
+                  name: coverage-report
+                  path: ./coverage
+
+            - name: Validate coverage report
+              run: |
+                  pwd
+                  ls coverage
+                  cat coverage/lcov.info
+
+            - name: SonarCloud Scan
+              # v5.2.0
+              uses: SonarSource/sonarqube-scan-action@2500896589ef8f7247069a56136f8dc177c27ccf
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

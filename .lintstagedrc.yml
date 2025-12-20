@@ -1,0 +1,5 @@
+'*.{ts,tsx,js,jsx}':
+    - yarn format
+    - yarn lint
+'*.{yml,yaml,json,css,scss,md,gql,graphql}':
+    - yarn format

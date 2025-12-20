@@ -1,0 +1,8 @@
+# Directory-specific configurations
+projects:
+    web:
+        schema: 'packages/web/src/gql/schema.graphql'
+        documents: 'packages/web/**/*.ts'
+    e2e-api:
+        schema: 'packages/e2e-api/gql/schema.graphql'
+        documents: 'packages/e2e-api/**/*.ts'

@@ -1,0 +1,61 @@
+diff --git a/dist/instances.js b/dist/instances.js
+index 18b84b5c3de970b919749f88f6475e1b980d69e7..ffaf9eb11986187dff1dae9fc369b187219ed182 100644
+--- a/dist/instances.js
++++ b/dist/instances.js
+@@ -28,8 +28,14 @@ exports.createInstanceWithCalculatedProperties = createInstanceWithCalculatedPro
+  * ```
+  */
+ function createInstance(instanceClass, rawObject) {
+-    const instance = new instanceClass();
+-    return Object.assign(instance, rawObject);
++    try {
++        const instance = new instanceClass(rawObject);
++        return instance;
++    } catch {
++        // console.log('Could not create ReadModel instance with constructor. Did you extend BaseReadModel?')
++        const instance = new instanceClass();
++        return Object.assign(instance, rawObject);
++    }  
+ }
+ /**
+  * Creates an array of instances of the given class from the given array of raw objects.
+@@ -52,8 +58,7 @@ function createInstances(instanceClass, rawObjects) {
+  * @private
+  */
+ async function createInstanceWithCalculatedProperties(instanceClass, raw, propertiesToInclude) {
+-    const instance = new instanceClass();
+-    Object.assign(instance, raw);
++    const instance = createInstance(instanceClass, raw);
+     const result = {};
+     const propertiesMap = buildPropertiesMap(propertiesToInclude);
+     await processProperties(instance, result, propertiesMap);
+@@ -100,7 +105,7 @@ async function processProperties(source, result, propertiesMap) {
+                     const newItem = {};
+                     await processProperties(item, newItem, propertiesMap[key].__children);
+                     if (Object.keys(newItem).length > 0) {
+-                        result[key].push(newItem);
++                        result[key].push({...newItem});
+                     }
+                 }
+             }
+@@ -112,7 +117,8 @@ async function processProperties(source, result, propertiesMap) {
+                 }
+                 else {
+                     result[key] = {};
+-                    await processProperties(resolvedValue, result[key], propertiesMap[key]);
++                    if (resolvedValue.constructor) result[key] = createInstance(resolvedValue.constructor, resolvedValue);
++                    await processProperties(resolvedValue, {...result[key]}, propertiesMap[key]);
+                     if (Object.keys(result[key]).length === 0) {
+                         result[key] = null;
+                     }
+@@ -124,10 +130,6 @@ async function processProperties(source, result, propertiesMap) {
+             }
+         }
+         else {
+-            // Handle the case when the source property is undefined
+-            if (typeof propertiesMap[key] === 'object' && Object.keys(propertiesMap[key]).length > 0) {
+-                result[key] = null;
+-            }
+         }
+     }
+ }

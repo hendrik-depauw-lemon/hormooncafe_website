@@ -1,0 +1,201 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index bda1da68fab6504dabedf965b326c8819878a2b4..28b3d411d463ed669795155f639f0cad58e405f3 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -5,6 +5,8 @@ export { BoosterDataMigrations } from './booster-data-migrations';
+ export { BoosterDataMigrationFinished } from './core-concepts/data-migration/events/booster-data-migration-finished';
+ export { BoosterDataMigrationEntity } from './core-concepts/data-migration/entities/booster-data-migration-entity';
+ export { BoosterTouchEntityHandler } from './booster-touch-entity-handler';
++export { BoosterTokenVerifier } from './booster-token-verifier'
++export { BoosterAuthorizer } from './booster-authorizer'
+ export * from './services/token-verifiers';
+ export * from './instrumentation/index';
+ export * from './decorators/health-sensor';
+diff --git a/dist/index.js b/dist/index.js
+index 50e26baf699c9fa8433cae0507dd3be3ff84964b..8cb7a968e32e798be1d0ad59d63c35828c950c83 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -25,6 +25,10 @@ var booster_data_migration_entity_1 = require("./core-concepts/data-migration/en
+ Object.defineProperty(exports, "BoosterDataMigrationEntity", { enumerable: true, get: function () { return booster_data_migration_entity_1.BoosterDataMigrationEntity; } });
+ var booster_touch_entity_handler_1 = require("./booster-touch-entity-handler");
+ Object.defineProperty(exports, "BoosterTouchEntityHandler", { enumerable: true, get: function () { return booster_touch_entity_handler_1.BoosterTouchEntityHandler; } });
++var booster_token_verfier_1 = require("./booster-token-verifier");
++Object.defineProperty(exports, "BoosterTokenVerifier", { enumerable: true, get: function () { return booster_token_verfier_1.BoosterTokenVerifier; } });
++var booster_authorizer_1 = require("./booster-authorizer");
++Object.defineProperty(exports, "BoosterAuthorizer", { enumerable: true, get: function () { return booster_authorizer_1.BoosterAuthorizer; } });
+ tslib_1.__exportStar(require("./services/token-verifiers"), exports);
+ tslib_1.__exportStar(require("./instrumentation/index"), exports);
+ tslib_1.__exportStar(require("./decorators/health-sensor"), exports);
+diff --git a/dist/services/graphql/query-helpers/graphql-query-filter-arguments-builder.js b/dist/services/graphql/query-helpers/graphql-query-filter-arguments-builder.js
+index 2e61a77759337876ba2ff15250f6bb0c0028ba27..9d30c5053aae2c87da9dae449b047487af652b38 100644
+--- a/dist/services/graphql/query-helpers/graphql-query-filter-arguments-builder.js
++++ b/dist/services/graphql/query-helpers/graphql-query-filter-arguments-builder.js
+@@ -156,7 +156,7 @@ class GraphqlQueryFilterArgumentsBuilder {
+                 isDefined: { type: graphql_1.GraphQLBoolean },
+             };
+         if (typeGroup === 'Enum') {
+-            const EnumType = this.typeInformer.getOrCreateGraphQLType(typeMetadata, true);
++            const EnumType = this.typeInformer.getOrCreateGraphQLType({ ...typeMetadata, isNullable: true }, true);
+             return {
+                 eq: { type: EnumType },
+                 ne: { type: EnumType },
+diff --git a/dist/services/graphql/query-generators/graphql-query-listed-generator.js b/dist/services/graphql/query-generators/graphql-query-listed-generator.js
+index 76f107de318b821eac1b338f1660d1869666a343..9a381c12bd52b9ba55152956a6e3f8de3ccd2db6 100644
+--- a/dist/services/graphql/query-generators/graphql-query-listed-generator.js
++++ b/dist/services/graphql/query-generators/graphql-query-listed-generator.js
+@@ -6,6 +6,12 @@ const inflected = require("inflected");
+ const graphql_scalars_1 = require("graphql-scalars");
+ const graphql_query_sort_builder_1 = require("../query-helpers/graphql-query-sort-builder");
+ const graphql_query_filter_arguments_builder_1 = require("../query-helpers/graphql-query-filter-arguments-builder");
++const cursor = new graphql_1.GraphQLInputObjectType({
++    name: `AfterCursor`,
++    fields: {
++        skip: { type: graphql_1.GraphQLInt },
++    },
++});
+ class GraphqlQueryListedGenerator {
+     constructor(readModels, typeInformer, filterResolverBuilder, generatedFiltersByTypeName = {}, config) {
+         this.readModels = readModels;
+@@ -27,7 +33,6 @@ class GraphqlQueryListedGenerator {
+                     fields: {
+                         items: { type: new graphql_1.GraphQLNonNull(new graphql_1.GraphQLList(new graphql_1.GraphQLNonNull(graphQLType))) },
+                         count: { type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLInt) },
+-                        cursor: { type: graphql_scalars_1.GraphQLJSON },
+                     },
+                 })),
+                 args: this.generateListedQueriesFields(readModel.name, readModel, excludeProp),
+@@ -58,7 +63,7 @@ class GraphqlQueryListedGenerator {
+             filter: { type: filter },
+             limit: { type: graphql_1.GraphQLInt },
+             sortBy: { type: sort },
+-            afterCursor: { type: graphql_scalars_1.GraphQLJSON },
++            afterCursor: { type: cursor },
+         };
+     }
+ }
+diff --git a/dist/services/graphql/common.js b/dist/services/graphql/common.js
+index 99f6e06a08ae97e11330e04e92904257133a5c97..710b9a30de1d26f020c5b5e395eae42f9a2c37cc 100644
+--- a/dist/services/graphql/common.js
++++ b/dist/services/graphql/common.js
+@@ -14,6 +14,9 @@ function parseDate(inputValue) {
+     function safeParse() {
+         if (typeof inputValue !== 'string')
+             return { type: 'error', message: `Invalid date, not a string: ${inputValue}` };
++        const isoWithTimezoneRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(Z|[+-]\d{2}:\d{2})$/;
++        if (!isoWithTimezoneRegex.test(inputValue))
++            return { type: 'error', message: `Invalid date, does not contain timezone: ${inputValue}` };
+         const date = new Date(inputValue); // Verified that it's a string, so it's safe to cast.
+         return isNaN(date.getTime()) ? { type: 'error', message: `Invalid date: ${inputValue}` } : { type: 'success', date };
+     }
+diff --git a/dist/services/graphql/graphql-type-informer.js b/dist/services/graphql/graphql-type-informer.js
+index a7c93b9c47cf1275f5fb0e91af4256b6582b1a18..6f4d3f4ed31cc416def23a6178ce0211cf2dfc08 100644
+--- a/dist/services/graphql/graphql-type-informer.js
++++ b/dist/services/graphql/graphql-type-informer.js
+@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.GraphQLTypeInformer = void 0;
+ const metadata_1 = require("./../../decorators/metadata");
+ const graphql_1 = require("graphql");
++const definition_1 = require("graphql/type/definition");
+ const graphql_scalars_1 = require("graphql-scalars");
+ const common_1 = require("./common");
+ class GraphQLTypeInformer {
+@@ -119,20 +120,32 @@ class GraphQLTypeInformer {
+         return createdGraphQLType;
+     }
+     createObjectType(classMetadata, inputType, excludeProps) {
++        const typeName = classMetadata.name + (inputType ? 'Input' : '');
++        // Create a placeholder to store type before defining fields (for circular refs)
++        if (!this.graphQLTypes[typeName]) {
++            this.graphQLTypes[typeName] = inputType
++                ? new graphql_1.GraphQLInputObjectType({ name: typeName, fields: {} })
++                : new graphql_1.GraphQLObjectType({ name: typeName, fields: {} });
++        }
+         const finalFields = (0, common_1.nonExcludedFields)(classMetadata.fields, excludeProps);
+         if (inputType) {
+-            return new graphql_1.GraphQLInputObjectType({
+-                name: classMetadata.name + 'Input',
+-                fields: finalFields === null || finalFields === void 0 ? void 0 : finalFields.reduce((obj, prop) => {
+-                    this.logger.debug(`Get or create GraphQL input type for property ${prop.name}`);
+-                    return {
+-                        ...obj,
+-                        [prop.name]: { type: this.getOrCreateGraphQLType(prop.typeInfo, inputType) },
+-                    };
+-                }, {}),
++            Object.assign(this.graphQLTypes[typeName], {
++                _fields: () => (0, definition_1.defineFieldMap)({
++                    name: typeName,
++                    fields: () => finalFields.reduce((obj, prop) => {
++                        this.logger.debug(`Get or create GraphQL input type for property ${prop.name}`);
++                        return {
++                            ...obj,
++                            [prop.name]: { type: this.getOrCreateGraphQLType(prop.typeInfo, inputType) },
++                        };
++                    }, {}),
++                }),
+             });
+         }
+-        return this.createOutputObjectType(classMetadata, excludeProps);
++        else {
++            this.createOutputObjectType(classMetadata, excludeProps);
++        }
++        return this.graphQLTypes[typeName];
+     }
+     getOrCreateObjectTypeForUnion(classMetadata, excludeProps) {
+         const typeName = classMetadata.name;
+@@ -144,17 +157,25 @@ class GraphQLTypeInformer {
+         return createdGraphQLType;
+     }
+     createOutputObjectType(classMetadata, excludeProps) {
++        const typeName = classMetadata.name;
++        // Placeholder for circular references
++        if (!this.graphQLTypes[typeName]) {
++            this.graphQLTypes[typeName] = new graphql_1.GraphQLObjectType({ name: typeName, fields: {} });
++        }
+         const finalFields = (0, common_1.nonExcludedFields)(classMetadata.fields, excludeProps);
+-        return new graphql_1.GraphQLObjectType({
+-            name: classMetadata.name,
+-            fields: finalFields === null || finalFields === void 0 ? void 0 : finalFields.reduce((obj, prop) => {
+-                this.logger.debug(`Get or create GraphQL output type for property ${prop.name}`);
+-                return {
+-                    ...obj,
+-                    [prop.name]: { type: this.getOrCreateGraphQLType(prop.typeInfo, false) },
+-                };
+-            }, {}),
++        Object.assign(this.graphQLTypes[typeName], {
++            _fields: () => (0, definition_1.defineFieldMap)({
++                name: typeName,
++                fields: () => finalFields.reduce((obj, prop) => {
++                    this.logger.debug(`Get or create GraphQL output type for property ${prop.name}`);
++                    return {
++                        ...obj,
++                        [prop.name]: { type: this.getOrCreateGraphQLType(prop.typeInfo, false) },
++                    };
++                }, {}),
++            }),
+         });
++        return this.graphQLTypes[typeName];
+     }
+ }
+ exports.GraphQLTypeInformer = GraphQLTypeInformer;
+diff --git a/dist/decorators/projects.d.ts b/dist/decorators/projects.d.ts
+index 58cab1d9d3ff40e856d0824c7c97f90a1f944aa9..b82e7edaec64299ca0f7e9307350f0473654da79 100644
+--- a/dist/decorators/projects.d.ts
++++ b/dist/decorators/projects.d.ts
+@@ -11,11 +11,11 @@ type UUIDLike = string | UUID;
+  * @param unProject
+  */
+ export declare function Projects<TEntity extends EntityInterface, TJoinKey extends keyof TEntity, TReadModel extends ReadModelInterface>(originEntity: Class<TEntity>, joinKey: JoinKeyType<TEntity, TReadModel>, unProject?: UnprojectionMethod<TEntity, TReadModel, PropertyType<TEntity, TJoinKey>>): <TReceivedReadModel extends ReadModelInterface>(readModelClass: Class<TReceivedReadModel>, methodName: string, methodDescriptor: ProjectionMethod<TEntity, TReceivedReadModel, JoinKeyType<TEntity, TReceivedReadModel>>) => void;
+-type ProjectionMethodDefinitionForArray<TEntity, TReadModel> = (_: TEntity, readModelID: UUID, readModel?: TReadModel, projectionInfo?: ProjectionInfo) => ProjectionResult<TReadModel>;
+-type ProjectionMethodDefinition<TEntity, TReadModel> = (_: TEntity, readModel?: TReadModel, projectionInfo?: ProjectionInfo) => ProjectionResult<TReadModel>;
++type ProjectionMethodDefinitionForArray<TEntity, TReadModel> = ((_: TEntity, readModelID: UUID, readModel?: TReadModel, projectionInfo?: ProjectionInfo) => ProjectionResult<TReadModel>) | ((_: TEntity, readModelID: UUID, readModel?: TReadModel, projectionInfo?: ProjectionInfo) => Promise<ProjectionResult<TReadModel>>);
++type ProjectionMethodDefinition<TEntity, TReadModel> = ((_: TEntity, readModel?: TReadModel, projectionInfo?: ProjectionInfo) => ProjectionResult<TReadModel>) | ((_: TEntity, readModel?: TReadModel, projectionInfo?: ProjectionInfo) => Promise<ProjectionResult<TReadModel>>);
+ type ProjectionMethod<TEntity extends EntityInterface, TReadModel extends ReadModelInterface, TJoinKeyType extends JoinKeyType<TEntity, TReadModel>> = TJoinKeyType extends ReadModelJoinKeyFunction<TEntity, TReadModel> ? ProjectionMethodWithEntityConditionalReadModelIdAndReadModel<TEntity, TReadModel> : TJoinKeyType extends keyof TEntity ? NonNullable<PropertyType<TEntity, TJoinKeyType>> extends Array<UUIDLike> ? ProjectionMethodWithEntityReadModelIdAndReadModel<TEntity, TReadModel> : ProjectionMethodWithEntityAndReadModel<TEntity, TReadModel> : never;
+-type ProjectionMethodWithEntityAndReadModel<TEntity extends EntityInterface, TReadModel extends ReadModelInterface> = TypedPropertyDescriptor<(_: TEntity, readModel?: TReadModel) => ProjectionResult<TReadModel>>;
+-type ProjectionMethodWithEntityConditionalReadModelIdAndReadModel<TEntity extends EntityInterface, TReadModel extends ReadModelInterface> = TypedPropertyDescriptor<(_: TEntity, readModelID: UUID | undefined, readModel?: TReadModel) => ProjectionResult<TReadModel>>;
+-type ProjectionMethodWithEntityReadModelIdAndReadModel<TEntity extends EntityInterface, TReadModel extends ReadModelInterface> = TypedPropertyDescriptor<(_: TEntity, readModelID: UUID, readModel?: TReadModel) => ProjectionResult<TReadModel>>;
+-type UnprojectionMethod<TEntity, TReadModel, TPropType> = TPropType extends Array<UUID> ? ProjectionMethodDefinitionForArray<TEntity, TReadModel> : ProjectionMethodDefinition<TEntity, TReadModel>;
++type ProjectionMethodWithEntityAndReadModel<TEntity extends EntityInterface, TReadModel extends ReadModelInterface> = (TypedPropertyDescriptor<(_: TEntity, readModel?: TReadModel) => ProjectionResult<TReadModel>>) |  TypedPropertyDescriptor<(_: TEntity, readModel?: TReadModel) => Promise<ProjectionResult<TReadModel>>>;
++type ProjectionMethodWithEntityConditionalReadModelIdAndReadModel<TEntity extends EntityInterface, TReadModel extends ReadModelInterface> = (TypedPropertyDescriptor<(_: TEntity, readModelID: UUID | undefined, readModel?: TReadModel) => ProjectionResult<TReadModel>>) | TypedPropertyDescriptor<(_: TEntity, readModelID: UUID | undefined, readModel?: TReadModel) => Promise<ProjectionResult<TReadModel>>>;
++type ProjectionMethodWithEntityReadModelIdAndReadModel<TEntity extends EntityInterface, TReadModel extends ReadModelInterface> = (TypedPropertyDescriptor<(_: TEntity, readModelID: UUID, readModel?: TReadModel) => ProjectionResult<TReadModel>>) | TypedPropertyDescriptor<(_: TEntity, readModelID: UUID, readModel?: TReadModel) => Promise<ProjectionResult<TReadModel>>>;
++type UnprojectionMethod<TEntity, TReadModel, TPropType> = TPropType extends Array<UUID> ? ProjectionMethodDefinitionForArray<TEntity, TReadModel> : ProjectionMethodDefinition<TEntity, TReadModel>;export {};
+ export {};

@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Start dev api",
+            "request": "launch",
+            "type": "node",
+            "runtimeExecutable": "yarn",
+            "cwd": "${workspaceRoot}",
+            "runtimeArgs": ["dev", "api"],
+            "resolveSourceMapLocations": ["**", "!**/node_modules/**"],
+            "outFiles": ["${workspaceFolder}/packages/api/**/*.(m|c|)js", "!**/node_modules/**"],
+            "program": "${workspaceFolder}/packages/api/src/index.ts"
+        },
+        {
+            "name": "Web: debug full stack",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/next/dist/bin/next",
+            "runtimeArgs": ["--inspect"],
+            "skipFiles": ["<node_internals>/**"],
+            "serverReadyAction": {
+                "action": "debugWithChrome",
+                "killOnServerStop": true,
+                "pattern": "- Local:.+(https?://.+)",
+                "uriFormat": "%s",
+                "webRoot": "${workspaceFolder}"
+            },
+            "cwd": "${workspaceFolder}/packages/web"
+        }
+    ],
+    "compounds": []
+}

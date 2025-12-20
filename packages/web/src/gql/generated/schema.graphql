@@ -1,0 +1,1427 @@
+input ActivateScheduledJobInput {
+  id: ID!
+}
+
+input AddAuthorInput {
+  name: String!
+}
+
+input AddBookInput {
+  authorIds: [ID]
+  availableAsEbook: Boolean!
+  coverType: BookCoverType!
+  description: String
+  numberOfPages: Float!
+  publishDate: Date!
+  publisherId: ID!
+  title: String!
+}
+
+input AddPublisherInput {
+  addressPlaceId: String
+  name: String!
+}
+
+input AddViewInput {
+  name: String!
+  pathname: String!
+  searchParams: String!
+}
+
+type Address {
+  city: String
+  country: String
+  formattedAddress: String
+  placeId: String!
+  postalCode: String
+  street: String
+}
+
+input AddressPropertyFilter {
+  and: [AddressPropertyFilter]
+  city: StringPropertyFilter
+  country: StringPropertyFilter
+  formattedAddress: StringPropertyFilter
+  isDefined: Boolean
+  not: AddressPropertyFilter
+  or: [AddressPropertyFilter]
+  placeId: StringPropertyFilter
+  postalCode: StringPropertyFilter
+  street: StringPropertyFilter
+}
+
+input AddressPropertySortBy {
+  city: orderProperty
+  country: orderProperty
+  formattedAddress: orderProperty
+  placeId: orderProperty
+  postalCode: orderProperty
+  street: orderProperty
+}
+
+input AfterCursor {
+  skip: Int
+}
+
+type AuthorReadModel {
+  createdAt: Date!
+  id: ID!
+  name: String!
+  updatedAt: Date!
+}
+
+type AuthorReadModelConnection {
+  count: Int!
+  items: [AuthorReadModel!]!
+}
+
+input AuthorReadModelFilter {
+  and: [AuthorReadModelFilter]
+  createdAt: DatePropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  name: StringPropertyFilter
+  not: AuthorReadModelFilter
+  or: [AuthorReadModelFilter]
+  updatedAt: DatePropertyFilter
+}
+
+input AuthorReadModelSortBy {
+  createdAt: orderProperty
+  id: orderProperty
+  name: orderProperty
+  updatedAt: orderProperty
+}
+
+input AuthorReadModelSubscriptionFilter {
+  and: [AuthorReadModelSubscriptionFilter]
+  createdAt: DatePropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  name: StringPropertyFilter
+  not: AuthorReadModelSubscriptionFilter
+  or: [AuthorReadModelSubscriptionFilter]
+  updatedAt: DatePropertyFilter
+}
+
+enum BookCoverType {
+  Hardcover
+  Paperback
+}
+
+input BookCoverTypePropertyFilter {
+  eq: BookCoverType
+  isDefined: Boolean
+  ne: BookCoverType
+}
+
+type BookReadModel {
+  authorIds: [ID]
+  authorNames: [String]
+  availableAsEbook: Boolean!
+  coverType: BookCoverType!
+  createdAt: Date!
+  description: String
+  id: ID!
+  nested: NestedObject!
+  nestedList: [NestedObject!]!
+  numberOfPages: Float!
+  publishDate: Date!
+  publisherId: ID!
+  publisherName: String!
+  title: String!
+  updatedAt: Date!
+}
+
+type BookReadModelConnection {
+  count: Int!
+  items: [BookReadModel!]!
+}
+
+input BookReadModelFilter {
+  and: [BookReadModelFilter]
+  authorIds: UUIDArrayPropertyFilter
+  authorNames: StringArrayPropertyFilter
+  availableAsEbook: BooleanPropertyFilter
+  coverType: BookCoverTypePropertyFilter
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  nested: NestedObjectPropertyFilter
+  nestedList: NestedObjectArrayPropertyFilter
+  not: BookReadModelFilter
+  numberOfPages: NumberPropertyFilter
+  or: [BookReadModelFilter]
+  publishDate: DatePropertyFilter
+  publisherId: UUIDPropertyFilter
+  publisherName: StringPropertyFilter
+  title: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input BookReadModelSortBy {
+  authorIds: orderProperty
+  authorNames: orderProperty
+  availableAsEbook: orderProperty
+  coverType: orderProperty
+  createdAt: orderProperty
+  description: orderProperty
+  id: orderProperty
+  nested: NestedObjectPropertySortBy
+  nestedList: NestedObjectPropertySortBy
+  numberOfPages: orderProperty
+  publishDate: orderProperty
+  publisherId: orderProperty
+  publisherName: orderProperty
+  title: orderProperty
+  updatedAt: orderProperty
+}
+
+input BookReadModelSubscriptionFilter {
+  and: [BookReadModelSubscriptionFilter]
+  authorIds: UUIDArrayPropertyFilter
+  authorNames: StringArrayPropertyFilter
+  availableAsEbook: BooleanPropertyFilter
+  coverType: BookCoverTypePropertyFilter
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  nested: NestedObjectPropertyFilter
+  nestedList: NestedObjectArrayPropertyFilter
+  not: BookReadModelSubscriptionFilter
+  numberOfPages: NumberPropertyFilter
+  or: [BookReadModelSubscriptionFilter]
+  publishDate: DatePropertyFilter
+  publisherId: UUIDPropertyFilter
+  publisherName: StringPropertyFilter
+  title: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input BooleanPropertyFilter {
+  eq: Boolean
+  isDefined: Boolean
+  ne: Boolean
+}
+
+type CalendarEventObject {
+  calendarGroupId: ID
+  color: String
+  createdAt: Date!
+  description: String
+  displayName: String!
+  endDateTime: Date!
+  id: String!
+  isRecurringCalendarEvent: Boolean!
+  recurringCalendarEventData: RecurringCalendarEventData
+  startDateTime: Date!
+  updatedAt: Date!
+}
+
+type CalendarEventReadModel {
+  calendarGroupId: ID
+  color: String
+  createdAt: Date!
+  description: String
+  displayName: String!
+  endDateTime: Date!
+  id: ID!
+  startDateTime: Date!
+  updatedAt: Date!
+}
+
+type CalendarEventReadModelConnection {
+  count: Int!
+  items: [CalendarEventReadModel!]!
+}
+
+input CalendarEventReadModelFilter {
+  and: [CalendarEventReadModelFilter]
+  calendarGroupId: UUIDPropertyFilter
+  color: StringPropertyFilter
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  displayName: StringPropertyFilter
+  endDateTime: DatePropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  not: CalendarEventReadModelFilter
+  or: [CalendarEventReadModelFilter]
+  startDateTime: DatePropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input CalendarEventReadModelSortBy {
+  calendarGroupId: orderProperty
+  color: orderProperty
+  createdAt: orderProperty
+  description: orderProperty
+  displayName: orderProperty
+  endDateTime: orderProperty
+  id: orderProperty
+  startDateTime: orderProperty
+  updatedAt: orderProperty
+}
+
+input CalendarEventReadModelSubscriptionFilter {
+  and: [CalendarEventReadModelSubscriptionFilter]
+  calendarGroupId: UUIDPropertyFilter
+  color: StringPropertyFilter
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  displayName: StringPropertyFilter
+  endDateTime: DatePropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  not: CalendarEventReadModelSubscriptionFilter
+  or: [CalendarEventReadModelSubscriptionFilter]
+  startDateTime: DatePropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+type CalendarGroupReadModel {
+  color: String
+  createdAt: Date!
+  id: ID!
+  name: String!
+  updatedAt: Date!
+}
+
+type CalendarGroupReadModelConnection {
+  count: Int!
+  items: [CalendarGroupReadModel!]!
+}
+
+input CalendarGroupReadModelFilter {
+  and: [CalendarGroupReadModelFilter]
+  color: StringPropertyFilter
+  createdAt: DatePropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  name: StringPropertyFilter
+  not: CalendarGroupReadModelFilter
+  or: [CalendarGroupReadModelFilter]
+  updatedAt: DatePropertyFilter
+}
+
+input CalendarGroupReadModelSortBy {
+  color: orderProperty
+  createdAt: orderProperty
+  id: orderProperty
+  name: orderProperty
+  updatedAt: orderProperty
+}
+
+input CalendarGroupReadModelSubscriptionFilter {
+  and: [CalendarGroupReadModelSubscriptionFilter]
+  color: StringPropertyFilter
+  createdAt: DatePropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  name: StringPropertyFilter
+  not: CalendarGroupReadModelSubscriptionFilter
+  or: [CalendarGroupReadModelSubscriptionFilter]
+  updatedAt: DatePropertyFilter
+}
+
+enum CalendarWeekday {
+  FRIDAY
+  MONDAY
+  SATURDAY
+  SUNDAY
+  THURSDAY
+  TUESDAY
+  WEDNESDAY
+}
+
+input CalendarWeekdayArrayPropertyFilter {
+  includes: JSON
+  isDefined: Boolean
+}
+
+input CancelJobInput {
+  id: ID!
+}
+
+input ChangeAuthorInput {
+  id: ID!
+  name: String!
+}
+
+input ChangeBookInput {
+  authorIds: [ID]
+  availableAsEbook: Boolean!
+  coverType: BookCoverType!
+  description: String
+  id: ID!
+  numberOfPages: Float!
+  publishDate: Date!
+  publisherId: ID!
+  title: String!
+}
+
+input ChangePublisherInput {
+  addressPlaceId: String
+  id: ID!
+  name: String!
+}
+
+input CreateCalendarEventInput {
+  calendarGroupId: ID
+  color: String
+  description: String
+  displayName: String!
+  endDateTime: Date!
+  fromRecurringEventId: ID
+  startDateTime: Date!
+}
+
+input CreateCalendarGroupInput {
+  color: String
+  name: String!
+}
+
+input CreateFileInput {
+  filename: String!
+}
+
+input CreateRecurringCalendarEventInput {
+  calendarGroupId: ID
+  color: String
+  description: String
+  displayName: String!
+  durationInMinutes: Float!
+  endDate: Date
+  every: Float!
+  frequency: RecurringCalendarEventFrequency!
+  onWeekdays: [CalendarWeekday]
+  startDate: Date!
+  timezone: String!
+}
+
+input CreateScheduledJobInput {
+  jobKey: JobKey!
+  name: String!
+  schedule: String!
+}
+
+type CreateSignedUrlForFileUploadReturnType {
+  contentType: String
+  createdFileId: ID!
+  filename: String!
+  signedUrl: String!
+}
+
+"""Date custom scalar type"""
+scalar Date
+
+input DateArrayPropertyFilter {
+  includes: JSON
+  isDefined: Boolean
+}
+
+input DatePropertyFilter {
+  eq: Date
+  gt: Date
+  gte: Date
+  in: [Date]
+  isDefined: Boolean
+  lt: Date
+  lte: Date
+  ne: Date
+}
+
+input DeactivateScheduledJobInput {
+  id: ID!
+}
+
+input DeleteCalendarEventInput {
+  calendarEventId: ID!
+}
+
+input DeleteCalendarGroupInput {
+  calendarGroupId: ID!
+  keepAndUnlinkEvents: Boolean!
+}
+
+input DeleteEventInput {
+  createdAt: String!
+  entityID: String!
+  entityTypeName: String!
+}
+
+input DeleteRecurringCalendarEventInput {
+  recurringCalendarEventId: ID!
+}
+
+input DeleteRecurringCalendarEventInstanceInput {
+  instanceDate: Date!
+  recurringCalendarEventId: ID!
+}
+
+type EntityHistory {
+  entityId: String!
+  entityTypeName: String!
+  events: [EntityHistoryEntry!]!
+}
+
+type EntityHistoryEntry {
+  date: Date!
+  diff: JSON
+  id: String
+  newSnapshot: JSON!
+  oldSnapshot: JSON!
+  type: String!
+  user: EntityHistoryEntryUser!
+  value: JSON!
+}
+
+type EntityHistoryEntryUser {
+  email: String
+  id: String
+}
+
+enum EntityType {
+  Author
+  Book
+  BoosterDataMigrationEntity
+  CalendarEvent
+  CalendarGroup
+  File
+  JobExecution
+  Publisher
+  RecurringCalendarEvent
+  ScheduledJob
+  View
+}
+
+type EventQueryResponse {
+  createdAt: String!
+  deletedAt: String
+  entity: String!
+  entityID: ID!
+  requestID: ID!
+  type: String!
+  user: User
+  value: JSON!
+}
+
+enum EventType {
+  AuthorAdded
+  AuthorChanged
+  AuthorRemoved
+  BookAdded
+  BookChanged
+  BookRemoved
+  BoosterDataMigrationFinished
+  BoosterDataMigrationStarted
+  CalendarEventCreated
+  CalendarEventDeleted
+  CalendarEventUnlinkedFromGroup
+  CalendarEventUpdated
+  CalendarGroupCreated
+  CalendarGroupDeleted
+  CalendarGroupUpdated
+  DateExcludedFromRecurringCalendarEvent
+  FileCreated
+  JobExecutionCanceled
+  JobExecutionCreated
+  JobExecutionFailed
+  JobExecutionItemProcessed
+  JobExecutionMessageAdded
+  JobExecutionStarted
+  JobExecutionSucceeded
+  JobExecutionTotalItemsUpdated
+  PublisherAdded
+  PublisherChanged
+  PublisherRemoved
+  RecurringCalendarEventCreated
+  RecurringCalendarEventDeleted
+  RecurringCalendarEventUnlinkedFromGroup
+  RecurringCalendarEventUpdated
+  ScheduledJobActivated
+  ScheduledJobCreated
+  ScheduledJobDataUpdated
+  ScheduledJobDeactivated
+  ScheduledJobRemoved
+  ScheduledJobScheduleUpdated
+  ViewAdded
+  ViewRemoved
+}
+
+input ExecuteJobInput {
+  data: String
+  jobKey: JobKey!
+  name: String!
+}
+
+type FileReadModel {
+  contentLength: Float
+  contentType: String
+  createdAt: Date!
+  externalId: String
+  filename: String!
+  id: ID!
+  signedDownloadUrl: String!
+  storageKey: String!
+  updatedAt: Date!
+}
+
+type FileReadModelConnection {
+  count: Int!
+  items: [FileReadModel!]!
+}
+
+input FileReadModelFilter {
+  and: [FileReadModelFilter]
+  contentType: StringPropertyFilter
+  createdAt: DatePropertyFilter
+  externalId: StringPropertyFilter
+  filename: StringPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  not: FileReadModelFilter
+  or: [FileReadModelFilter]
+  storageKey: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input FileReadModelSortBy {
+  contentType: orderProperty
+  createdAt: orderProperty
+  externalId: orderProperty
+  filename: orderProperty
+  id: orderProperty
+  storageKey: orderProperty
+  updatedAt: orderProperty
+}
+
+input FileReadModelSubscriptionFilter {
+  and: [FileReadModelSubscriptionFilter]
+  contentType: StringPropertyFilter
+  createdAt: DatePropertyFilter
+  externalId: StringPropertyFilter
+  filename: StringPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  not: FileReadModelSubscriptionFilter
+  or: [FileReadModelSubscriptionFilter]
+  storageKey: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input GetCalendarEventsBetweenInput {
+  calendarGroupId: ID
+  endDate: Date!
+  startDate: Date!
+}
+
+input GetEntityHistoryInput {
+  entityId: String!
+  entityTypeName: String!
+}
+
+input GetMyViewsForPathnameInput {
+  pathname: String!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type JobExecutionReadModel {
+  completedAt: Date
+  createdAt: Date!
+  data: String
+  durationInSeconds: Float
+  estimatedSecondsRemaining: Float
+  failedItems: Float
+  id: ID!
+  jobKey: JobKey!
+  messages: [Message!]!
+  name: String!
+  progress: Float!
+  scheduledJobId: ID
+  startedAt: Date
+  status: JobExecutionStatus!
+  successfulItems: Float
+  summary: String
+  totalItems: Float
+  updatedAt: Date!
+}
+
+type JobExecutionReadModelConnection {
+  count: Int!
+  items: [JobExecutionReadModel!]!
+}
+
+input JobExecutionReadModelFilter {
+  and: [JobExecutionReadModelFilter]
+  completedAt: DatePropertyFilter
+  createdAt: DatePropertyFilter
+  data: StringPropertyFilter
+  failedItems: NumberPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  jobKey: JobKeyPropertyFilter
+  messages: MessageArrayPropertyFilter
+  name: StringPropertyFilter
+  not: JobExecutionReadModelFilter
+  or: [JobExecutionReadModelFilter]
+  scheduledJobId: UUIDPropertyFilter
+  startedAt: DatePropertyFilter
+  status: JobExecutionStatusPropertyFilter
+  successfulItems: NumberPropertyFilter
+  summary: StringPropertyFilter
+  totalItems: NumberPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input JobExecutionReadModelSortBy {
+  completedAt: orderProperty
+  createdAt: orderProperty
+  data: orderProperty
+  failedItems: orderProperty
+  id: orderProperty
+  jobKey: orderProperty
+  messages: orderProperty
+  name: orderProperty
+  scheduledJobId: orderProperty
+  startedAt: orderProperty
+  status: orderProperty
+  successfulItems: orderProperty
+  summary: orderProperty
+  totalItems: orderProperty
+  updatedAt: orderProperty
+}
+
+input JobExecutionReadModelSubscriptionFilter {
+  and: [JobExecutionReadModelSubscriptionFilter]
+  completedAt: DatePropertyFilter
+  createdAt: DatePropertyFilter
+  data: StringPropertyFilter
+  failedItems: NumberPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  jobKey: JobKeyPropertyFilter
+  messages: MessageArrayPropertyFilter
+  name: StringPropertyFilter
+  not: JobExecutionReadModelSubscriptionFilter
+  or: [JobExecutionReadModelSubscriptionFilter]
+  scheduledJobId: UUIDPropertyFilter
+  startedAt: DatePropertyFilter
+  status: JobExecutionStatusPropertyFilter
+  successfulItems: NumberPropertyFilter
+  summary: StringPropertyFilter
+  totalItems: NumberPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+enum JobExecutionStatus {
+  CANCELED
+  COMPLETED
+  FAILED
+  IN_PROGRESS
+  PENDING
+}
+
+input JobExecutionStatusPropertyFilter {
+  eq: JobExecutionStatus
+  isDefined: Boolean
+  ne: JobExecutionStatus
+}
+
+enum JobKey {
+  Fibonacci
+  SyncBooks
+}
+
+input JobKeyPropertyFilter {
+  eq: JobKey
+  isDefined: Boolean
+  ne: JobKey
+}
+
+input ListAuthorReadModelFilter {
+  and: [ListAuthorReadModelFilter]
+  createdAt: DatePropertyFilter
+  id: UUIDPropertyFilter
+  name: StringPropertyFilter
+  not: ListAuthorReadModelFilter
+  or: [ListAuthorReadModelFilter]
+  updatedAt: DatePropertyFilter
+}
+
+input ListBookReadModelFilter {
+  and: [ListBookReadModelFilter]
+  authorIds: UUIDArrayPropertyFilter
+  authorNames: StringArrayPropertyFilter
+  availableAsEbook: BooleanPropertyFilter
+  coverType: BookCoverTypePropertyFilter
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  id: UUIDPropertyFilter
+  nested: NestedObjectPropertyFilter
+  nestedList: NestedObjectArrayPropertyFilter
+  not: ListBookReadModelFilter
+  numberOfPages: NumberPropertyFilter
+  or: [ListBookReadModelFilter]
+  publishDate: DatePropertyFilter
+  publisherId: UUIDPropertyFilter
+  publisherName: StringPropertyFilter
+  title: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input ListCalendarEventReadModelFilter {
+  and: [ListCalendarEventReadModelFilter]
+  calendarGroupId: UUIDPropertyFilter
+  color: StringPropertyFilter
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  displayName: StringPropertyFilter
+  endDateTime: DatePropertyFilter
+  id: UUIDPropertyFilter
+  not: ListCalendarEventReadModelFilter
+  or: [ListCalendarEventReadModelFilter]
+  startDateTime: DatePropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input ListCalendarGroupReadModelFilter {
+  and: [ListCalendarGroupReadModelFilter]
+  color: StringPropertyFilter
+  createdAt: DatePropertyFilter
+  id: UUIDPropertyFilter
+  name: StringPropertyFilter
+  not: ListCalendarGroupReadModelFilter
+  or: [ListCalendarGroupReadModelFilter]
+  updatedAt: DatePropertyFilter
+}
+
+input ListFileReadModelFilter {
+  and: [ListFileReadModelFilter]
+  contentType: StringPropertyFilter
+  createdAt: DatePropertyFilter
+  externalId: StringPropertyFilter
+  filename: StringPropertyFilter
+  id: UUIDPropertyFilter
+  not: ListFileReadModelFilter
+  or: [ListFileReadModelFilter]
+  storageKey: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input ListJobExecutionReadModelFilter {
+  and: [ListJobExecutionReadModelFilter]
+  completedAt: DatePropertyFilter
+  createdAt: DatePropertyFilter
+  data: StringPropertyFilter
+  failedItems: NumberPropertyFilter
+  id: UUIDPropertyFilter
+  jobKey: JobKeyPropertyFilter
+  messages: MessageArrayPropertyFilter
+  name: StringPropertyFilter
+  not: ListJobExecutionReadModelFilter
+  or: [ListJobExecutionReadModelFilter]
+  scheduledJobId: UUIDPropertyFilter
+  startedAt: DatePropertyFilter
+  status: JobExecutionStatusPropertyFilter
+  successfulItems: NumberPropertyFilter
+  summary: StringPropertyFilter
+  totalItems: NumberPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input ListPublisherReadModelFilter {
+  address: AddressPropertyFilter
+  and: [ListPublisherReadModelFilter]
+  createdAt: DatePropertyFilter
+  id: UUIDPropertyFilter
+  name: StringPropertyFilter
+  not: ListPublisherReadModelFilter
+  or: [ListPublisherReadModelFilter]
+  updatedAt: DatePropertyFilter
+}
+
+input ListRecurringCalendarEventReadModelFilter {
+  and: [ListRecurringCalendarEventReadModelFilter]
+  calendarGroupId: UUIDPropertyFilter
+  color: StringPropertyFilter
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  displayName: StringPropertyFilter
+  durationInMinutes: NumberPropertyFilter
+  endDate: DatePropertyFilter
+  every: NumberPropertyFilter
+  excludedDates: DateArrayPropertyFilter
+  frequency: RecurringCalendarEventFrequencyPropertyFilter
+  id: UUIDPropertyFilter
+  not: ListRecurringCalendarEventReadModelFilter
+  onWeekdays: CalendarWeekdayArrayPropertyFilter
+  or: [ListRecurringCalendarEventReadModelFilter]
+  rRuleSetString: StringPropertyFilter
+  startDate: DatePropertyFilter
+  timezone: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input ListScheduledJobReadModelFilter {
+  active: BooleanPropertyFilter
+  and: [ListScheduledJobReadModelFilter]
+  createdAt: DatePropertyFilter
+  data: StringPropertyFilter
+  id: UUIDPropertyFilter
+  jobKey: JobKeyPropertyFilter
+  name: StringPropertyFilter
+  not: ListScheduledJobReadModelFilter
+  or: [ListScheduledJobReadModelFilter]
+  schedule: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input ListViewReadModelFilter {
+  and: [ListViewReadModelFilter]
+  createdAt: DatePropertyFilter
+  id: UUIDPropertyFilter
+  name: StringPropertyFilter
+  not: ListViewReadModelFilter
+  or: [ListViewReadModelFilter]
+  pathname: StringPropertyFilter
+  searchParams: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+  userId: StringPropertyFilter
+}
+
+type Message {
+  message: String!
+  timestamp: Date!
+}
+
+input MessageArrayPropertyFilter {
+  includes: JSON
+  isDefined: Boolean
+}
+
+type Mutation {
+  ActivateScheduledJob(input: ActivateScheduledJobInput!): ID!
+  AddAuthor(input: AddAuthorInput!): ID!
+  AddBook(input: AddBookInput!): ID!
+  AddPublisher(input: AddPublisherInput!): ID!
+  AddView(input: AddViewInput!): ID!
+  CancelJob(input: CancelJobInput!): ID!
+  ChangeAuthor(input: ChangeAuthorInput!): ID!
+  ChangeBook(input: ChangeBookInput!): ID!
+  ChangePublisher(input: ChangePublisherInput!): ID!
+  CreateCalendarEvent(input: CreateCalendarEventInput!): ID!
+  CreateCalendarGroup(input: CreateCalendarGroupInput!): ID!
+  CreateFile(input: CreateFileInput!): CreateSignedUrlForFileUploadReturnType!
+  CreateRecurringCalendarEvent(input: CreateRecurringCalendarEventInput!): ID!
+  CreateScheduledJob(input: CreateScheduledJobInput!): ID!
+  DeactivateScheduledJob(input: DeactivateScheduledJobInput!): ID!
+  DeleteCalendarEvent(input: DeleteCalendarEventInput!): ID!
+  DeleteCalendarGroup(input: DeleteCalendarGroupInput!): ID!
+  DeleteEvent(input: DeleteEventInput!): Boolean!
+  DeleteRecurringCalendarEvent(input: DeleteRecurringCalendarEventInput!): ID!
+  DeleteRecurringCalendarEventInstance(input: DeleteRecurringCalendarEventInstanceInput!): ID!
+  ExecuteJob(input: ExecuteJobInput!): ID!
+  RemoveAuthor(input: RemoveAuthorInput!): ID!
+  RemoveBook(input: RemoveBookInput!): ID!
+  RemovePublisher(input: RemovePublisherInput!): ID!
+  RemoveScheduledJob(input: RemoveScheduledJobInput!): ID!
+  RemoveView(input: RemoveViewInput!): ID!
+  SyncBooks: ID!
+  UpdateCalendarEvent(input: UpdateCalendarEventInput!): ID!
+  UpdateCalendarGroup(input: UpdateCalendarGroupInput!): ID!
+  UpdateRecurringCalendarEvent(input: UpdateRecurringCalendarEventInput!): ID!
+  UpdateScheduledJobData(input: UpdateScheduledJobDataInput!): ID!
+  UpdateScheduledJobSchedule(input: UpdateScheduledJobScheduleInput!): ID!
+}
+
+type NestedObject {
+  randomNumber: Float!
+  title: String!
+}
+
+input NestedObjectArrayPropertyFilter {
+  includes: JSON
+  isDefined: Boolean
+}
+
+input NestedObjectPropertyFilter {
+  and: [NestedObjectPropertyFilter]
+  isDefined: Boolean
+  not: NestedObjectPropertyFilter
+  or: [NestedObjectPropertyFilter]
+  randomNumber: NumberPropertyFilter
+  title: StringPropertyFilter
+}
+
+input NestedObjectPropertySortBy {
+  randomNumber: orderProperty
+  title: orderProperty
+}
+
+input NumberPropertyFilter {
+  eq: Float
+  gt: Float
+  gte: Float
+  in: [Float]
+  isDefined: Boolean
+  lt: Float
+  lte: Float
+  ne: Float
+}
+
+type PublisherReadModel {
+  address: Address
+  createdAt: Date!
+  id: ID!
+  name: String!
+  updatedAt: Date!
+}
+
+type PublisherReadModelConnection {
+  count: Int!
+  items: [PublisherReadModel!]!
+}
+
+input PublisherReadModelFilter {
+  address: AddressPropertyFilter
+  and: [PublisherReadModelFilter]
+  createdAt: DatePropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  name: StringPropertyFilter
+  not: PublisherReadModelFilter
+  or: [PublisherReadModelFilter]
+  updatedAt: DatePropertyFilter
+}
+
+input PublisherReadModelSortBy {
+  address: AddressPropertySortBy
+  createdAt: orderProperty
+  id: orderProperty
+  name: orderProperty
+  updatedAt: orderProperty
+}
+
+input PublisherReadModelSubscriptionFilter {
+  address: AddressPropertyFilter
+  and: [PublisherReadModelSubscriptionFilter]
+  createdAt: DatePropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  name: StringPropertyFilter
+  not: PublisherReadModelSubscriptionFilter
+  or: [PublisherReadModelSubscriptionFilter]
+  updatedAt: DatePropertyFilter
+}
+
+type Query {
+  AuthorReadModel(id: ID!): AuthorReadModel
+  AuthorReadModels(filter: AuthorReadModelFilter): [AuthorReadModel!]! @deprecated(reason: "Method is deprecated. Use List* methods")
+  BookReadModel(id: ID!): BookReadModel
+  BookReadModels(filter: BookReadModelFilter): [BookReadModel!]! @deprecated(reason: "Method is deprecated. Use List* methods")
+  CalendarEventReadModel(id: ID!): CalendarEventReadModel
+  CalendarEventReadModels(filter: CalendarEventReadModelFilter): [CalendarEventReadModel!]! @deprecated(reason: "Method is deprecated. Use List* methods")
+  CalendarGroupReadModel(id: ID!): CalendarGroupReadModel
+  CalendarGroupReadModels(filter: CalendarGroupReadModelFilter): [CalendarGroupReadModel!]! @deprecated(reason: "Method is deprecated. Use List* methods")
+  FileReadModel(id: ID!): FileReadModel
+  FileReadModels(filter: FileReadModelFilter): [FileReadModel!]! @deprecated(reason: "Method is deprecated. Use List* methods")
+  GetCalendarEventsBetween(input: GetCalendarEventsBetweenInput!): [CalendarEventObject!]!
+  GetEntityHistory(input: GetEntityHistoryInput!): EntityHistory!
+  GetMyViewsForPathname(input: GetMyViewsForPathnameInput!): [ViewReadModel!]!
+  GetRandomBook: BookReadModel
+  GetRole: Role!
+  GetServiceVersion: ServiceVersionInfo!
+  JobExecutionReadModel(id: ID!): JobExecutionReadModel
+  JobExecutionReadModels(filter: JobExecutionReadModelFilter): [JobExecutionReadModel!]! @deprecated(reason: "Method is deprecated. Use List* methods")
+  ListAuthorReadModels(afterCursor: AfterCursor, filter: ListAuthorReadModelFilter, limit: Int, sortBy: AuthorReadModelSortBy): AuthorReadModelConnection!
+  ListBookReadModels(afterCursor: AfterCursor, filter: ListBookReadModelFilter, limit: Int, sortBy: BookReadModelSortBy): BookReadModelConnection!
+  ListCalendarEventReadModels(afterCursor: AfterCursor, filter: ListCalendarEventReadModelFilter, limit: Int, sortBy: CalendarEventReadModelSortBy): CalendarEventReadModelConnection!
+  ListCalendarGroupReadModels(afterCursor: AfterCursor, filter: ListCalendarGroupReadModelFilter, limit: Int, sortBy: CalendarGroupReadModelSortBy): CalendarGroupReadModelConnection!
+  ListFileReadModels(afterCursor: AfterCursor, filter: ListFileReadModelFilter, limit: Int, sortBy: FileReadModelSortBy): FileReadModelConnection!
+  ListJobExecutionReadModels(afterCursor: AfterCursor, filter: ListJobExecutionReadModelFilter, limit: Int, sortBy: JobExecutionReadModelSortBy): JobExecutionReadModelConnection!
+  ListPublisherReadModels(afterCursor: AfterCursor, filter: ListPublisherReadModelFilter, limit: Int, sortBy: PublisherReadModelSortBy): PublisherReadModelConnection!
+  ListRecurringCalendarEventReadModels(afterCursor: AfterCursor, filter: ListRecurringCalendarEventReadModelFilter, limit: Int, sortBy: RecurringCalendarEventReadModelSortBy): RecurringCalendarEventReadModelConnection!
+  ListScheduledJobReadModels(afterCursor: AfterCursor, filter: ListScheduledJobReadModelFilter, limit: Int, sortBy: ScheduledJobReadModelSortBy): ScheduledJobReadModelConnection!
+  ListViewReadModels(afterCursor: AfterCursor, filter: ListViewReadModelFilter, limit: Int, sortBy: ViewReadModelSortBy): ViewReadModelConnection!
+  PublisherReadModel(id: ID!): PublisherReadModel
+  PublisherReadModels(filter: PublisherReadModelFilter): [PublisherReadModel!]! @deprecated(reason: "Method is deprecated. Use List* methods")
+  RecurringCalendarEventReadModel(id: ID!): RecurringCalendarEventReadModel
+  RecurringCalendarEventReadModels(filter: RecurringCalendarEventReadModelFilter): [RecurringCalendarEventReadModel!]! @deprecated(reason: "Method is deprecated. Use List* methods")
+  ScheduledJobReadModel(id: ID!): ScheduledJobReadModel
+  ScheduledJobReadModels(filter: ScheduledJobReadModelFilter): [ScheduledJobReadModel!]! @deprecated(reason: "Method is deprecated. Use List* methods")
+  ViewReadModel(id: ID!): ViewReadModel
+  ViewReadModels(filter: ViewReadModelFilter): [ViewReadModel!]! @deprecated(reason: "Method is deprecated. Use List* methods")
+  eventsByEntity(entity: EntityType!, entityID: ID, from: String, limit: Int, to: String): [EventQueryResponse]
+  eventsByType(from: String, limit: Int, to: String, type: EventType!): [EventQueryResponse]
+}
+
+type RecurringCalendarEventData {
+  createdAt: Date!
+  durationInMinutes: Float!
+  endDate: Date
+  every: Float!
+  frequency: RecurringCalendarEventFrequency!
+  id: ID!
+  onWeekdays: [CalendarWeekday]
+  rRuleSetString: String!
+  startDate: Date!
+  timezone: String!
+  updatedAt: Date!
+}
+
+enum RecurringCalendarEventFrequency {
+  DAILY
+  MONTHLY
+  WEEKLY
+  YEARLY
+}
+
+input RecurringCalendarEventFrequencyPropertyFilter {
+  eq: RecurringCalendarEventFrequency
+  isDefined: Boolean
+  ne: RecurringCalendarEventFrequency
+}
+
+type RecurringCalendarEventReadModel {
+  calendarGroupId: ID
+  color: String
+  createdAt: Date!
+  description: String
+  displayName: String!
+  durationInMinutes: Float!
+  endDate: Date
+  every: Float!
+  excludedDates: [Date!]!
+  frequency: RecurringCalendarEventFrequency!
+  id: ID!
+  onWeekdays: [CalendarWeekday]
+  rRuleSetString: String!
+  startDate: Date!
+  timezone: String!
+  updatedAt: Date!
+}
+
+type RecurringCalendarEventReadModelConnection {
+  count: Int!
+  items: [RecurringCalendarEventReadModel!]!
+}
+
+input RecurringCalendarEventReadModelFilter {
+  and: [RecurringCalendarEventReadModelFilter]
+  calendarGroupId: UUIDPropertyFilter
+  color: StringPropertyFilter
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  displayName: StringPropertyFilter
+  durationInMinutes: NumberPropertyFilter
+  endDate: DatePropertyFilter
+  every: NumberPropertyFilter
+  excludedDates: DateArrayPropertyFilter
+  frequency: RecurringCalendarEventFrequencyPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  not: RecurringCalendarEventReadModelFilter
+  onWeekdays: CalendarWeekdayArrayPropertyFilter
+  or: [RecurringCalendarEventReadModelFilter]
+  rRuleSetString: StringPropertyFilter
+  startDate: DatePropertyFilter
+  timezone: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input RecurringCalendarEventReadModelSortBy {
+  calendarGroupId: orderProperty
+  color: orderProperty
+  createdAt: orderProperty
+  description: orderProperty
+  displayName: orderProperty
+  durationInMinutes: orderProperty
+  endDate: orderProperty
+  every: orderProperty
+  excludedDates: orderProperty
+  frequency: orderProperty
+  id: orderProperty
+  onWeekdays: orderProperty
+  rRuleSetString: orderProperty
+  startDate: orderProperty
+  timezone: orderProperty
+  updatedAt: orderProperty
+}
+
+input RecurringCalendarEventReadModelSubscriptionFilter {
+  and: [RecurringCalendarEventReadModelSubscriptionFilter]
+  calendarGroupId: UUIDPropertyFilter
+  color: StringPropertyFilter
+  createdAt: DatePropertyFilter
+  description: StringPropertyFilter
+  displayName: StringPropertyFilter
+  durationInMinutes: NumberPropertyFilter
+  endDate: DatePropertyFilter
+  every: NumberPropertyFilter
+  excludedDates: DateArrayPropertyFilter
+  frequency: RecurringCalendarEventFrequencyPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  not: RecurringCalendarEventReadModelSubscriptionFilter
+  onWeekdays: CalendarWeekdayArrayPropertyFilter
+  or: [RecurringCalendarEventReadModelSubscriptionFilter]
+  rRuleSetString: StringPropertyFilter
+  startDate: DatePropertyFilter
+  timezone: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input RemoveAuthorInput {
+  id: ID!
+}
+
+input RemoveBookInput {
+  id: ID!
+}
+
+input RemovePublisherInput {
+  id: ID!
+}
+
+input RemoveScheduledJobInput {
+  id: ID!
+}
+
+input RemoveViewInput {
+  id: ID!
+}
+
+enum Role {
+  Admin
+  SuperAdmin
+  User
+}
+
+type ScheduledJobReadModel {
+  active: Boolean!
+  createdAt: Date!
+  data: String
+  id: ID!
+  jobKey: JobKey!
+  name: String!
+  schedule: String!
+  updatedAt: Date!
+}
+
+type ScheduledJobReadModelConnection {
+  count: Int!
+  items: [ScheduledJobReadModel!]!
+}
+
+input ScheduledJobReadModelFilter {
+  active: BooleanPropertyFilter
+  and: [ScheduledJobReadModelFilter]
+  createdAt: DatePropertyFilter
+  data: StringPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  jobKey: JobKeyPropertyFilter
+  name: StringPropertyFilter
+  not: ScheduledJobReadModelFilter
+  or: [ScheduledJobReadModelFilter]
+  schedule: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+input ScheduledJobReadModelSortBy {
+  active: orderProperty
+  createdAt: orderProperty
+  data: orderProperty
+  id: orderProperty
+  jobKey: orderProperty
+  name: orderProperty
+  schedule: orderProperty
+  updatedAt: orderProperty
+}
+
+input ScheduledJobReadModelSubscriptionFilter {
+  active: BooleanPropertyFilter
+  and: [ScheduledJobReadModelSubscriptionFilter]
+  createdAt: DatePropertyFilter
+  data: StringPropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  jobKey: JobKeyPropertyFilter
+  name: StringPropertyFilter
+  not: ScheduledJobReadModelSubscriptionFilter
+  or: [ScheduledJobReadModelSubscriptionFilter]
+  schedule: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+}
+
+type ServiceVersionInfo {
+  version: String!
+}
+
+input StringArrayPropertyFilter {
+  includes: String
+  isDefined: Boolean
+}
+
+input StringPropertyFilter {
+  beginsWith: String
+  contains: String
+  eq: String
+  gt: String
+  gte: String
+  iRegex: String
+  in: [String]
+  isDefined: Boolean
+  lt: String
+  lte: String
+  ne: String
+  regex: String
+}
+
+type Subscription {
+  AuthorReadModel(id: ID!): AuthorReadModel
+  AuthorReadModels(filter: AuthorReadModelSubscriptionFilter): AuthorReadModel
+  BookReadModel(id: ID!): BookReadModel
+  BookReadModels(filter: BookReadModelSubscriptionFilter): BookReadModel
+  CalendarEventReadModel(id: ID!): CalendarEventReadModel
+  CalendarEventReadModels(filter: CalendarEventReadModelSubscriptionFilter): CalendarEventReadModel
+  CalendarGroupReadModel(id: ID!): CalendarGroupReadModel
+  CalendarGroupReadModels(filter: CalendarGroupReadModelSubscriptionFilter): CalendarGroupReadModel
+  FileReadModel(id: ID!): FileReadModel
+  FileReadModels(filter: FileReadModelSubscriptionFilter): FileReadModel
+  JobExecutionReadModel(id: ID!): JobExecutionReadModel
+  JobExecutionReadModels(filter: JobExecutionReadModelSubscriptionFilter): JobExecutionReadModel
+  PublisherReadModel(id: ID!): PublisherReadModel
+  PublisherReadModels(filter: PublisherReadModelSubscriptionFilter): PublisherReadModel
+  RecurringCalendarEventReadModel(id: ID!): RecurringCalendarEventReadModel
+  RecurringCalendarEventReadModels(filter: RecurringCalendarEventReadModelSubscriptionFilter): RecurringCalendarEventReadModel
+  ScheduledJobReadModel(id: ID!): ScheduledJobReadModel
+  ScheduledJobReadModels(filter: ScheduledJobReadModelSubscriptionFilter): ScheduledJobReadModel
+  ViewReadModel(id: ID!): ViewReadModel
+  ViewReadModels(filter: ViewReadModelSubscriptionFilter): ViewReadModel
+}
+
+input UUIDArrayPropertyFilter {
+  includes: ID
+  isDefined: Boolean
+}
+
+input UUIDPropertyFilter {
+  beginsWith: String
+  contains: String
+  eq: ID
+  in: [ID]
+  isDefined: Boolean
+  ne: ID
+}
+
+input UpdateCalendarEventInput {
+  calendarEventId: ID!
+  calendarGroupId: ID
+  color: String
+  description: String
+  displayName: String!
+  endDateTime: Date!
+  startDateTime: Date!
+}
+
+input UpdateCalendarGroupInput {
+  calendarGroupId: ID!
+  color: String
+  name: String!
+}
+
+input UpdateRecurringCalendarEventInput {
+  color: String
+  description: String
+  displayName: String!
+  durationInMinutes: Float!
+  endDate: Date
+  every: Float!
+  frequency: RecurringCalendarEventFrequency!
+  onWeekdays: [CalendarWeekday]
+  recurringCalendarEventId: ID!
+  startDate: Date!
+  timezone: String!
+}
+
+input UpdateScheduledJobDataInput {
+  data: String!
+  id: ID!
+}
+
+input UpdateScheduledJobScheduleInput {
+  id: ID!
+  schedule: String!
+}
+
+type User {
+  id: String
+  roles: [String!]
+  username: String!
+}
+
+type ViewReadModel {
+  createdAt: Date!
+  id: ID!
+  name: String!
+  pathname: String!
+  searchParams: String!
+  updatedAt: Date!
+  userId: String!
+}
+
+type ViewReadModelConnection {
+  count: Int!
+  items: [ViewReadModel!]!
+}
+
+input ViewReadModelFilter {
+  and: [ViewReadModelFilter]
+  createdAt: DatePropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  name: StringPropertyFilter
+  not: ViewReadModelFilter
+  or: [ViewReadModelFilter]
+  pathname: StringPropertyFilter
+  searchParams: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+  userId: StringPropertyFilter
+}
+
+input ViewReadModelSortBy {
+  createdAt: orderProperty
+  id: orderProperty
+  name: orderProperty
+  pathname: orderProperty
+  searchParams: orderProperty
+  updatedAt: orderProperty
+  userId: orderProperty
+}
+
+input ViewReadModelSubscriptionFilter {
+  and: [ViewReadModelSubscriptionFilter]
+  createdAt: DatePropertyFilter
+  id: UUIDPropertyFilter
+  isDefined: Boolean
+  name: StringPropertyFilter
+  not: ViewReadModelSubscriptionFilter
+  or: [ViewReadModelSubscriptionFilter]
+  pathname: StringPropertyFilter
+  searchParams: StringPropertyFilter
+  updatedAt: DatePropertyFilter
+  userId: StringPropertyFilter
+}
+
+enum orderProperty {
+  ASC
+  DESC
+}

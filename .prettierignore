@@ -1,0 +1,11 @@
+.next
+.yarn
+node_modules
+storybook-static
+.cache
+
+packages/web/src/gql/generated/**/*
+packages/e2e-api/gql/**
+
+commitlint.config.js
+postcss.config.js

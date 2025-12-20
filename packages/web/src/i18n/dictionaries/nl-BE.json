@@ -1,0 +1,739 @@
+{
+    "common": {
+        "get-started": "Start nu",
+        "create-form": {
+            "submit-label": "Aanmaken"
+        },
+        "update-form": {
+            "submit-label": "Wijzigingen opslaan"
+        },
+        "pagination": {
+            "results": "{total, plural, =0 {Geen resultaten} one {# resultaat} other {{from, number}-{to, number} van {total, number} resultaten}}",
+            "page": "Pagina {page, number}",
+            "previous": "Vorige",
+            "next": "Volgende"
+        },
+        "form": {
+            "optional": "optioneel"
+        },
+        "breadcrumbs": {
+            "home": "Home",
+            "details": "Details",
+            "mobile-drawer": {
+                "title": "Navigeer naar",
+                "description": "Selecteer een pagina om naartoe te navigeren.",
+                "close": "Sluiten"
+            },
+            "pages": {
+                "authors": "Auteurs",
+                "publishers": "Uitgevers",
+                "books": "Boeken",
+                "job-monitor": "Job monitor",
+                "scheduled-jobs": "Geplande taken",
+                "new": "Nieuw"
+            }
+        },
+        "filters": {
+            "clear": "Wis alle filters",
+            "true": "Waar",
+            "false": "Onwaar",
+            "no-results": "Geen resultaten gevonden",
+            "search": "Zoeken...",
+            "not-supported": "Deze filter wordt niet ondersteund",
+            "new-filter": "Filter toevoegen",
+            "operations": {
+                "beginsWith": "begint met",
+                "contains": "bevat",
+                "includes": "bevat",
+                "includesSome": "bevat sommige",
+                "includesAll": "bevat allemaal",
+                "between": "tussen",
+                "eq": "is",
+                "in": "in",
+                "isEmpty": "is leeg",
+                "isNotEmpty": "is niet leeg",
+                "ne": "is niet gelijk aan",
+                "gt": "is groter dan",
+                "gte": "is groter dan of gelijk aan",
+                "lt": "is kleiner dan",
+                "lte": "is kleiner dan of gelijk aan",
+                "regex": "bevat patroon"
+            }
+        },
+        "views": {
+            "button": {
+                "label": "Views"
+            },
+            "empty": "Nog geen views beschikbaar",
+            "create": {
+                "button": {
+                    "label": "Opslaan als view"
+                },
+                "dialog": {
+                    "title": "Nieuwe view",
+                    "description": "Sla de huidige filters en sortering op als een nieuwe view."
+                },
+                "form": {
+                    "fields": {
+                        "name": {
+                            "label": "Naam",
+                            "placeholder": "Voer een naam in voor de view..."
+                        }
+                    },
+                    "actions": {
+                        "save": "Opslaan",
+                        "cancel": "Annuleren"
+                    }
+                }
+            }
+        },
+        "activity-log": {
+            "by": "door",
+            "sorting": {
+                "asc": "Oplopend",
+                "desc": "Aflopend"
+            }
+        },
+        "table": {
+            "no-data": "Geen data beschikbaar",
+            "actions": {
+                "sort": {
+                    "asc": "Sorteer oplopend",
+                    "desc": "Sorteer aflopend",
+                    "none": "Geen sortering"
+                },
+                "filter": {
+                    "label": "Filter",
+                    "placeholder": "Zoeken..."
+                }
+            }
+        },
+        "metadata": {
+            "title": "Lemon Template",
+            "description": "This website is generated with Lemon Template."
+        },
+        "boolean-select": {
+            "true": "Waar",
+            "false": "Onwaar"
+        },
+        "combo-box": {
+            "placeholder": "Selecteer een optie",
+            "unselect-message": "Verwijder selectie",
+            "no-results-message": "Geen resultaten gevonden",
+            "address-autocomplete": {
+                "placeholder": "Typ een adres",
+                "no-results": "Geen adressen gevonden"
+            },
+            "calendar-group": {
+                "placeholder": "Kies een kalender",
+                "unselect": "Verwijder",
+                "no-results-message": "Geen kalenders gevonden",
+                "multi": {
+                    "placeholder": "Kies één of meer kalenders",
+                    "no-results-message": "Geen kalenders gevonden"
+                }
+            }
+        },
+        "file-input": {
+            "call-to-action": "Sleep en zet je bestand hier neer of ",
+            "browse": "blader",
+            "supported-formats": "Ondersteunde formaten: {formats}",
+            "not-found": "Bestand niet gevonden"
+        },
+        "confirmation-dialog": {
+            "title": "Bent u zeker?",
+            "confirm-button": "Bevestigen",
+            "cancel-button": "Annuleren"
+        },
+        "json-input": {
+            "error-message": "Ongeldige JSON, kan niet formatteren"
+        },
+        "period-type-selector": {
+            "day": "Dag",
+            "week": "Week",
+            "month": "Maand"
+        },
+        "enums": {
+            "calendar-event-frequency": {
+                "daily": "Dagelijks",
+                "weekly": "Wekelijks",
+                "monthly": "Maandelijks"
+            },
+            "calendar-event-weekday": {
+                "monday": "Maandag",
+                "tuesday": "Dinsdag",
+                "wednesday": "Woensdag",
+                "thursday": "Donderdag",
+                "friday": "Vrijdag",
+                "saturday": "Zaterdag",
+                "sunday": "Zondag"
+            }
+        }
+    },
+    "main-navigation": {
+        "header": {
+            "title": "Lemon Studio",
+            "subtitle": "Beheerplatform"
+        },
+        "dashboard": {
+            "title": "Dashboard"
+        },
+        "authors": {
+            "title": "Auteurs"
+        },
+        "publishers": {
+            "title": "Uitgevers"
+        },
+        "books": {
+            "title": "Boeken"
+        },
+        "system": {
+            "title": "Systeem",
+            "jobs": {
+                "title": "Job monitor"
+            },
+            "scheduled-jobs": {
+                "title": "Geplande taken"
+            }
+        },
+        "user": {
+            "sign-out": {
+                "title": "Afmelden"
+            }
+        },
+        "calendar": {
+            "title": "Kalender",
+            "overview": {
+                "title": "Kalender"
+            },
+            "groups": {
+                "title": "Kalender groepen"
+            }
+        }
+    },
+    "access-denied": {
+        "title": "Toegang geweigerd",
+        "description": "Je hebt geen toegang tot deze pagina.",
+        "actions": {
+            "go-to-home-page": "Ga naar de startpagina",
+            "sign-out": "Afmelden"
+        }
+    },
+    "users": {
+        "overview": {
+            "0": {
+                "title": "Gebruikers",
+                "actions": {
+                    "create": "Gebruiker uitnodigen"
+                },
+                "table": {
+                    "headers": {
+                        "e-mail": "E-mail",
+                        "role": "Rol",
+                        "status": "Status",
+                        "actions": "Acties"
+                    },
+                    "actions": {
+                        "edit": "Bewerken"
+                    }
+                }
+            }
+        }
+    },
+    "author": {
+        "common": {
+            "fields": {
+                "id": {
+                    "label": "ID"
+                },
+                "name": {
+                    "label": "Naam"
+                },
+                "created-at": {
+                    "label": "Aangemaakt op"
+                },
+                "updated-at": {
+                    "label": "Bijgewerkt op"
+                }
+            }
+        },
+        "create": {
+            "0": {
+                "title": "Auteur toevoegen"
+            }
+        },
+        "overview": {
+            "0": {
+                "title": "Auteurs"
+            },
+            "actions": {
+                "create": "Auteur toevoegen"
+            }
+        },
+        "details": {
+            "0": {
+                "title": "Auteur: {name}",
+                "details": {
+                    "details": "Details",
+                    "created-at": "Aangemaakt op",
+                    "updated-at": "Bijgewerkt op",
+                    "activity-log": "Activiteitenlog"
+                }
+            },
+            "linked-books": {
+                "title": "Boeken van deze auteur",
+                "actions": {
+                    "create": "Boek toevoegen"
+                }
+            }
+        }
+    },
+    "publisher": {
+        "common": {
+            "fields": {
+                "id": {
+                    "label": "ID"
+                },
+                "name": {
+                    "label": "Naam"
+                },
+                "address": {
+                    "label": "Adres"
+                },
+                "created-at": {
+                    "label": "Aangemaakt op"
+                },
+                "updated-at": {
+                    "label": "Bijgewerkt op"
+                }
+            }
+        },
+        "create": {
+            "0": {
+                "title": "Uitgever toevoegen"
+            }
+        },
+        "overview": {
+            "0": {
+                "title": "Uitgevers"
+            },
+            "actions": {
+                "create": "Uitgever toevoegen"
+            }
+        },
+        "details": {
+            "0": {
+                "title": "Uitgever: {name}",
+                "details": {
+                    "details": "Details",
+                    "created-at": "Aangemaakt op",
+                    "updated-at": "Bijgewerkt op",
+                    "activity-log": "Activiteitenlog"
+                }
+            }
+        }
+    },
+    "book": {
+        "common": {
+            "fields": {
+                "id": {
+                    "label": "ID"
+                },
+                "title": {
+                    "label": "Titel"
+                },
+                "description": {
+                    "label": "Beschrijving"
+                },
+                "publish-date": {
+                    "label": "Publicatiedatum",
+                    "placeholder": "Kies een datum"
+                },
+                "number-of-pages": {
+                    "label": "Aantal pagina's"
+                },
+                "available-as-ebook": {
+                    "label": "Beschikbaar als e-boek"
+                },
+                "cover-type": {
+                    "label": "Omslagtype",
+                    "placeholder": "Kies een omslagtype",
+                    "options": {
+                        "paperback": "Paperback",
+                        "hardcover": "Hardcover"
+                    }
+                },
+                "author": {
+                    "label": "Auteur",
+                    "placeholder": "Kies een auteur",
+                    "unselect": "Verwijder",
+                    "no-results": "Geen auteurs gevonden"
+                },
+                "publisher": {
+                    "label": "Uitgever",
+                    "placeholder": "Kies een uitgever",
+                    "unselect": "Verwijder",
+                    "no-results": "Geen uitgevers gevonden"
+                },
+                "created-at": {
+                    "label": "Aangemaakt op"
+                },
+                "updated-at": {
+                    "label": "Bijgewerkt op"
+                },
+                "author-names": {
+                    "label": "Auteurs"
+                },
+                "publisher-name": {
+                    "label": "Uitgever"
+                }
+            }
+        },
+        "create": {
+            "0": {
+                "title": "Boek toevoegen"
+            }
+        },
+        "overview": {
+            "0": {
+                "title": "Boeken"
+            },
+            "actions": {
+                "create": "Boek toevoegen",
+                "sync": "Boeken synchroniseren"
+            }
+        },
+        "details": {
+            "0": {
+                "title": "Boek: {name}",
+                "details": {
+                    "details": "Details",
+                    "created-at": "Aangemaakt op",
+                    "updated-at": "Bijgewerkt op",
+                    "activity-log": "Activiteitenlog"
+                }
+            }
+        }
+    },
+    "job": {
+        "common": {
+            "fields": {
+                "name": {
+                    "label": "Naam"
+                },
+                "job-key": {
+                    "label": "Taak",
+                    "placeholder": "Kies een taak"
+                },
+                "data": {
+                    "label": "Data (JSON)",
+                    "error-message": "Ongeldige JSON"
+                },
+                "started-at": {
+                    "label": "Gestart op"
+                },
+                "completed-at": {
+                    "label": "Voltooid op"
+                },
+                "status": {
+                    "label": "Status"
+                },
+                "created-at": {
+                    "label": "Aangemaakt op"
+                },
+                "updated-at": {
+                    "label": "Bijgewerkt op"
+                },
+                "total-items": {
+                    "label": "Totaal aantal items"
+                },
+                "successful-items": {
+                    "label": "Aantal succesvolle items"
+                },
+                "failed-items": {
+                    "label": "Aantal mislukte items"
+                },
+                "summary": {
+                    "label": "Samenvatting"
+                },
+                "progress": {
+                    "label": "Voortgang"
+                },
+                "duration": {
+                    "label": "Duur"
+                }
+            }
+        },
+        "status": {
+            "PENDING": "In afwachting",
+            "IN_PROGRESS": "Bezig",
+            "COMPLETED": "Voltooid",
+            "FAILED": "Mislukt",
+            "CANCELED": "Geannuleerd"
+        },
+        "overview": {
+            "0": {
+                "title": "Job Monitor",
+                "actions": {
+                    "execute": "Taak uitvoeren"
+                }
+            }
+        },
+        "execute": {
+            "0": {
+                "title": "Taak uitvoeren"
+            }
+        },
+        "details": {
+            "0": {
+                "title": "{name}",
+                "lead": "Een gedetailleerd overzicht van de voortgang van een job.",
+                "loading": "Laden...",
+                "cancel-button": {
+                    "label": "Annuleer taak",
+                    "confirmation-dialog-title": "Taak annuleren",
+                    "confirmation-dialog-message": "Weet je zeker dat je deze taak wilt annuleren?"
+                },
+                "details": {
+                    "items-processed": "Items verwerkt",
+                    "items-failed": "{amount} items mislukt",
+                    "name": "Naam",
+                    "started-at": "Gestart op",
+                    "completed-at": "Voltooid op",
+                    "total-items": "Totaal aantal items",
+                    "successful-items": "Aantal succesvolle items",
+                    "failed-items": "Aantal mislukte items",
+                    "summary": "Samenvatting",
+                    "progress": "Voortgang",
+                    "remaining": "Resterende tijd",
+                    "duration": "Duur"
+                },
+                "data": {
+                    "title": "Data",
+                    "lead": "De data die is gebruikt bij het uitvoeren van deze job.",
+                    "no-data": "Geen data beschikbaar"
+                },
+                "tabs": {
+                    "metadata": {
+                        "title": "Metadata",
+                        "status": "Status",
+                        "created-at": "Aangemaakt op",
+                        "updated-at": "Bijgewerkt op",
+                        "scheduled-job": "Geplande taak",
+                        "go-to-scheduled-job": "Ga naar geplande taak"
+                    },
+                    "history": {
+                        "title": "Geschiedenis"
+                    }
+                },
+                "messages": {
+                    "title": "Berichten",
+                    "lead": "De berichten die zijn gelogd bij deze job."
+                },
+                "1": {
+                    "title": "Logs"
+                }
+            }
+        }
+    },
+    "scheduled-job": {
+        "common": {
+            "fields": {
+                "name": {
+                    "label": "Naam"
+                },
+                "schedule": {
+                    "label": "Schema"
+                },
+                "job-key": {
+                    "label": "Taak",
+                    "placeholder": "Kies een taak"
+                },
+                "data": {
+                    "label": "Data (JSON)",
+                    "error-message": "Ongeldige JSON"
+                },
+                "active": {
+                    "label": "Actief"
+                },
+                "created-at": {
+                    "label": "Aangemaakt op"
+                },
+                "updated-at": {
+                    "label": "Bijgewerkt op"
+                }
+            }
+        },
+        "schedule-description": {
+            "invalid": "Ongeldig schema"
+        },
+        "overview": {
+            "0": {
+                "title": "Geplande taken",
+                "actions": {
+                    "create": "Geplande taak toevoegen"
+                }
+            }
+        },
+        "create": {
+            "0": {
+                "title": "Geplande taak toevoegen"
+            }
+        },
+        "details": {
+            "0": {
+                "title": "Geplande taak: {name}",
+                "tabs": {
+                    "schedule": "Schema",
+                    "data": "Data"
+                },
+                "delete-button": {
+                    "label": "Geplande taak",
+                    "confirmation-dialog-title": "Geplande taak verwijderen",
+                    "confirmation-dialog-message": "Weet je zeker dat je deze geplande taak wilt verwijderen?"
+                },
+                "details": {
+                    "created-at": "Aangemaakt op",
+                    "updated-at": "Bijgewerkt op",
+                    "active": "Actief",
+                    "details": "Details",
+                    "activity-log": "Activiteitenlog"
+                }
+            }
+        }
+    },
+    "dashboard": {
+        "title": "Dashboard"
+    },
+    "csp": {
+        "overview": {
+            "0": {
+                "title": "CSP-monitor"
+            }
+        }
+    },
+    "calendar": {
+        "common": {
+            "fields": {
+                "calendar-group-id": {
+                    "label": "Kalender"
+                },
+                "title": {
+                    "label": "Titel"
+                },
+                "display-name": {
+                    "label": "Titel"
+                },
+                "description": {
+                    "label": "Beschrijving"
+                },
+                "start-date-time": {
+                    "label": "Begin datum en tijd",
+                    "placeholder": "Kies een datum en tijd"
+                },
+                "start-date-time-recurring-instance": {
+                    "label": "Begin datum en tijd van het eerste voorkomen",
+                    "placeholder": "Kies een datum en tijd"
+                },
+                "end-date-time": {
+                    "label": "Eind datum en tijd",
+                    "placeholder": "Kies een datum en tijd"
+                },
+                "end-date-time-recurring-instance": {
+                    "label": "Eind datum en tijd van het eerste voorkomen",
+                    "placeholder": "Kies een datum en tijd"
+                },
+                "color": {
+                    "label": "Kleur"
+                },
+                "is-recurring-event": {
+                    "label": "Terugkerend evenement"
+                },
+                "frequency": {
+                    "label": "Frequentie",
+                    "placeholder": "Kies een frequentie"
+                },
+                "every": {
+                    "label": "interval (om de x ...)"
+                },
+                "on-weekdays": {
+                    "label": "Dagen van de week"
+                },
+                "end-date-for-recurring-event": {
+                    "label": "Einddatum voor terugkerend evenement (inclusief)",
+                    "placeholder": "Kies een datum"
+                },
+                "calendar-group": {
+                    "label": "Kalender"
+                }
+            }
+        },
+        "fetch-error": "Fout bij het ophalen van kalendergegevens.",
+        "create": {
+            "title": "Evenement aanmaken",
+            "event-created-successfully": "Evenement succesvol aangemaakt.",
+            "recurring-event-created-successfully": "Terugkerend evenement succesvol aangemaakt."
+        },
+        "update": {
+            "title": "Evenement bijwerken",
+            "issue-loading-event": "Fout bij het laden van het evenement.",
+            "recurring-event-one-instance": "éénmalige aanpassing",
+            "recurring-event-all-instances": "Alles aanpassen",
+            "event-updated-successfully": "Evenement succesvol bijgewerkt."
+        },
+        "delete": {
+            "confirmation-dialog": {
+                "description": "Het verwijderen van dit evenement is permanent. Weet je zeker dat je door wilt gaan?"
+            },
+            "event-deleted-successfully": "Evenement succesvol verwijderd."
+        }
+    },
+    "calendar-groups": {
+        "common": {
+            "fields": {
+                "name": {
+                    "label": "Naam"
+                },
+                "color": {
+                    "label": "Kleur"
+                },
+                "created-at": {
+                    "label": "Aangemaakt op"
+                },
+                "updated-at": {
+                    "label": "Bijgewerkt op"
+                }
+            }
+        },
+        "overview": {
+            "title": "Kalender groepen",
+            "actions": {
+                "create": "Kalender groep aanmaken"
+            }
+        },
+        "create": {
+            "title": "Kalender groep aanmaken"
+        },
+        "details": {
+            "title": "Kalender groep: {name}",
+            "actions": {
+                "delete": {
+                    "label": "Kalender groep verwijderen",
+                    "title": "Kalender groep verwijderen",
+                    "description": "Je staat op het punt {name} te verwijderen. Hieronder kan je kiezen of de bestaande evenementen behouden of verwijderd moeten worden. Als je ervoor kiest om ze te behouden dan zullen gelinkte evenementen niet langer gekoppeld zijn aan deze kalender groep.",
+                    "keep-and-unlink-events": "Evenementen behouden",
+                    "delete-button-label": "Verwijderen",
+                    "cancel-button-label": "Annuleren"
+                }
+            },
+            "details": {
+                "title": "Details",
+                "created-at": "Aangemaakt op",
+                "updated-at": "Bijgewerkt op"
+            },
+            "activity-log": {
+                "title": "Activiteitenlog"
+            }
+        }
+    }
+}

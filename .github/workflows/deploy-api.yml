@@ -1,0 +1,86 @@
+name: Deploy API
+
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: 'Deploy to which environment?'
+                required: true
+                type: choice
+                options:
+                    - dev
+                    - staging
+                    - production
+    workflow_call:
+        inputs:
+            environment:
+                description: 'Deploy to which environment?'
+                required: true
+                type: string
+
+permissions:
+    id-token: write
+
+jobs:
+    prepare-deploy:
+        environment: central-services
+        name: Deploy Docker image
+        runs-on: ubuntu-latest
+        steps:
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                  role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/oidc-ci-github-assume-role
+                  role-session-name: GitHub_to_AWS_via_FederatedOIDC
+                  aws-region: ${{ vars.AWS_REGION }}
+
+            - name: Login to Amazon ECR
+              id: login-ecr
+              uses: aws-actions/amazon-ecr-login@v2
+
+            - name: Check if image exists and retag
+              env:
+                  REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+                  REPOSITORY: ${{ vars.AWS_ECR_REPOSITORY }}
+                  SOURCE_TAG: ${{ github.ref_name }}
+                  TARGET_TAG: ${{ inputs.environment }}
+              run: |
+                  # Check if source image exists
+                  if ! aws ecr describe-images --repository-name $REPOSITORY --image-ids imageTag=$SOURCE_TAG >/dev/null 2>&1; then
+                    echo "Image with tag $SOURCE_TAG does not exist in ECR"
+                    exit 1
+                  fi
+
+                  # Create list of tags based on environment
+                  if [ "$TARGET_TAG" = "production" ]; then
+                    TAGS=("production" "prod" "stable")
+                  else
+                    TAGS=("$TARGET_TAG")
+                  fi
+
+                  # Add new environment tags
+                  MANIFEST=$(aws ecr batch-get-image --repository-name $REPOSITORY --image-ids imageTag=$SOURCE_TAG --query 'images[].imageManifest' --output text)
+                  for tag in "${TAGS[@]}"; do
+                    echo "Adding $tag tag to image $SOURCE_TAG"
+                    aws ecr put-image --repository-name $REPOSITORY --image-tag "$tag" --image-manifest "$MANIFEST"
+                  done
+
+    deploy-to-ecs:
+        needs: prepare-deploy
+        environment: ${{ inputs.environment }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                  role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/oidc-ci-github-assume-role
+                  role-session-name: GitHub_to_AWS_via_FederatedOIDC
+                  aws-region: ${{ vars.AWS_REGION }}
+
+            - name: Force new deployment
+              run: |
+                  aws ecs update-service --cluster ${{ vars.AWS_ECS_CLUSTER }} --service ${{ vars.AWS_ECS_SERVICE }} --force-new-deployment
+
+            - name: Post Info to GitHub Summary
+              run: |
+                  echo "## 🚀 API ${{ github.ref_name }} was deployed on ${{ inputs.environment }}" >> $GITHUB_STEP_SUMMARY
