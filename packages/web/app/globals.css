@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 /*
@@ -8,19 +9,19 @@
   ---break---
 */
 :root {
-    --radius: 6px;
+    --radius: 36px;
     --background: #fffcf7;
-    --foreground: #0a0a0a;
-    --card: #fffcf7;
-    --card-foreground: #0a0a0a;
+    --foreground: #cd104d;
+    --card: #cd104d;
+    --card-foreground: #fffcf7;
     --popover: #fffcf7;
     --popover-foreground: #0a0a0a;
-    --primary: #8ff2a1;
-    --primary-foreground: #0a0a0a;
-    --secondary: #ffffff;
-    --secondary-foreground: #0a0a0a;
+    --primary: #ff8210;
+    --primary-foreground: #fffcf7;
+    --secondary: #cd104d;
+    --secondary-foreground: #fffcf7;
     --muted: #f5f5f5;
-    --muted-foreground: #737373;
+    --muted-foreground: #fffcf7;
     --accent: #ece4df;
     --accent-foreground: #0a0a0a;
     --destructive: #f2a1a1;
@@ -43,6 +44,10 @@
     --sidebar-accent-foreground: #171717;
     --sidebar-border: #ece4df;
     --sidebar-ring: #71d887;
+    --font-special: 'Caprasimo', ui-sans-serif, sans-serif, system-ui;
+    /* --font-sans: 'Caprasimo', ui-sans-serif, sans-serif, system-ui;
+    --font-serif: 'open-sans', ui-sans-serif, sans-serif, system-ui;
+    --font-mono: Space Mono, ui-monospace, monospace; */
     --background-dark-input30: #ffffff;
     --accent-dark-input50: #f0f9ee;
     --outline: #ccecc67f;
@@ -93,6 +98,10 @@
     --sidebar-accent-foreground: #fafafa;
     --sidebar-border: #2a5625;
     --sidebar-ring: #ccecc6;
+    --font-special: 'Caprasimo', ui-sans-serif, sans-serif, system-ui;
+    /* --font-sans: 'Caprasimo', ui-sans-serif, sans-serif, system-ui;
+    --font-serif: 'bright-demo', ui-sans-serif, sans-serif, system-ui;
+    --font-mono: Space Mono, ui-monospace, monospace; */
     --background-dark-input30: #ffffff;
     --accent-dark-input50: #f0f9ee;
     --outline: #0b2c057f;
@@ -149,6 +158,11 @@
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
     --sidebar-ring: var(--sidebar-ring);
+    --font-special: var(--font-special);
+    /* --font-bright-demo: 'bright-demo', sans-serif;
+    --font-sans: var(--font-sans);
+    --font-mono: var(--font-mono);
+    --font-serif: var(--font-serif); */
     --background-dark-input30: var(--background-dark-input30);
     --accent-dark-input50: var(--accent-dark-input50);
     --outline: var(--outline);

@@ -1,739 +1,109 @@
 {
     "common": {
-        "get-started": "Start nu",
-        "create-form": {
-            "submit-label": "Aanmaken"
-        },
-        "update-form": {
-            "submit-label": "Wijzigingen opslaan"
-        },
-        "pagination": {
-            "results": "{total, plural, =0 {Geen resultaten} one {# resultaat} other {{from, number}-{to, number} van {total, number} resultaten}}",
-            "page": "Pagina {page, number}",
-            "previous": "Vorige",
-            "next": "Volgende"
-        },
-        "form": {
-            "optional": "optioneel"
-        },
-        "breadcrumbs": {
-            "home": "Home",
-            "details": "Details",
-            "mobile-drawer": {
-                "title": "Navigeer naar",
-                "description": "Selecteer een pagina om naartoe te navigeren.",
-                "close": "Sluiten"
-            },
-            "pages": {
-                "authors": "Auteurs",
-                "publishers": "Uitgevers",
-                "books": "Boeken",
-                "job-monitor": "Job monitor",
-                "scheduled-jobs": "Geplande taken",
-                "new": "Nieuw"
-            }
-        },
-        "filters": {
-            "clear": "Wis alle filters",
-            "true": "Waar",
-            "false": "Onwaar",
-            "no-results": "Geen resultaten gevonden",
-            "search": "Zoeken...",
-            "not-supported": "Deze filter wordt niet ondersteund",
-            "new-filter": "Filter toevoegen",
-            "operations": {
-                "beginsWith": "begint met",
-                "contains": "bevat",
-                "includes": "bevat",
-                "includesSome": "bevat sommige",
-                "includesAll": "bevat allemaal",
-                "between": "tussen",
-                "eq": "is",
-                "in": "in",
-                "isEmpty": "is leeg",
-                "isNotEmpty": "is niet leeg",
-                "ne": "is niet gelijk aan",
-                "gt": "is groter dan",
-                "gte": "is groter dan of gelijk aan",
-                "lt": "is kleiner dan",
-                "lte": "is kleiner dan of gelijk aan",
-                "regex": "bevat patroon"
-            }
-        },
-        "views": {
-            "button": {
-                "label": "Views"
-            },
-            "empty": "Nog geen views beschikbaar",
-            "create": {
-                "button": {
-                    "label": "Opslaan als view"
-                },
-                "dialog": {
-                    "title": "Nieuwe view",
-                    "description": "Sla de huidige filters en sortering op als een nieuwe view."
-                },
-                "form": {
-                    "fields": {
-                        "name": {
-                            "label": "Naam",
-                            "placeholder": "Voer een naam in voor de view..."
-                        }
-                    },
-                    "actions": {
-                        "save": "Opslaan",
-                        "cancel": "Annuleren"
-                    }
-                }
-            }
-        },
-        "activity-log": {
-            "by": "door",
-            "sorting": {
-                "asc": "Oplopend",
-                "desc": "Aflopend"
-            }
-        },
-        "table": {
-            "no-data": "Geen data beschikbaar",
-            "actions": {
-                "sort": {
-                    "asc": "Sorteer oplopend",
-                    "desc": "Sorteer aflopend",
-                    "none": "Geen sortering"
-                },
-                "filter": {
-                    "label": "Filter",
-                    "placeholder": "Zoeken..."
-                }
-            }
-        },
         "metadata": {
-            "title": "Lemon Template",
-            "description": "This website is generated with Lemon Template."
+            "title": "Hormooncafé | Cyclus, hormonen & verbinding voor vrouwen",
+            "description": "Hormooncafé brengt vrouwen samen rond hormonen, cyclus en gezondheid. Leer je lichaam beter begrijpen in een veilige, warme community - zonder taboes."
+        }
+    },
+    "navigation": {
+        "home": "home",
+        "workshops": "workshops",
+        "agenda": "agenda",
+        "about-sofie": "over Sofie",
+        "contact": "contact"
+    },
+    "hero-section": {
+        "title": "Welkom bij HORMOONCAFÉ",
+        "subtitle": "De plek waar vrouwen opnieuw leren luisteren naar hun lichaam en cyclus.",
+        "cta-button": "ONTDEK HET HIER",
+        "footer": "Een warme, veilige plek - online & offline - waar je kennis, herkenning en verbinding vindt."
+    },
+    "what-is-section": {
+        "title": "Wat is HORMOONCAFÉ?",
+        "card-1": {
+            "content-1": "Hormooncafé is geen gewone workshopreeks - het is een community, een beweging én een rustpunt in een wereld die van vrouwen verwacht dat ze altijd “aan” staan.",
+            "content-2": "Bij Hormooncafé breng ik jonge vrouwen samen om op een open, laagdrempelige manier te leren over hun lichaam, cyclus en hormonale gezondheid. In een warme setting combineer ik educatie, verbinding en ontspanning - zonder taboes of oordeel.",
+            "button": "BEKIJK DE WORKSHOPS"
         },
-        "boolean-select": {
-            "true": "Waar",
-            "false": "Onwaar"
-        },
-        "combo-box": {
-            "placeholder": "Selecteer een optie",
-            "unselect-message": "Verwijder selectie",
-            "no-results-message": "Geen resultaten gevonden",
-            "address-autocomplete": {
-                "placeholder": "Typ een adres",
-                "no-results": "Geen adressen gevonden"
+        "card-2": {
+            "title": "Hormooncafé is iets voor jou als je...",
+            "list": {
+                "item-1": "gestopt bent met hormonale anticonceptie (of eraan denkt)",
+                "item-2": "je cyclus wil leren begrijpen",
+                "item-3": "struggles ervaart zoals moodswings, acné, onregelmatigheid",
+                "item-4": "je soms overweldigd voelt door alle online informatie",
+                "item-5": "op zoek bent naar een warme, herkenbare community"
             },
-            "calendar-group": {
-                "placeholder": "Kies een kalender",
-                "unselect": "Verwijder",
-                "no-results-message": "Geen kalenders gevonden",
-                "multi": {
-                    "placeholder": "Kies één of meer kalenders",
-                    "no-results-message": "Geen kalenders gevonden"
-                }
-            }
+            "button": "SCHRIJF JE IN"
         },
-        "file-input": {
-            "call-to-action": "Sleep en zet je bestand hier neer of ",
-            "browse": "blader",
-            "supported-formats": "Ondersteunde formaten: {formats}",
-            "not-found": "Bestand niet gevonden"
+        "card-3": {
+            "title": "Sluit je aan bij de community",
+            "content-1": "Je hoeft deze zoektocht niet alleen te doen.",
+            "content-2": "Via sociale media en de nieuwsbrief deel ik tips, eerlijke verhalen, cycluskennis, behind-the-scenes en aankondigingen van nieuwe workshops",
+            "button": "Schrijf je in voor de nieuwsbrief"
+        }
+    },
+    "workshops-section": {
+        "title": "Wat kan je verwachten?",
+        "card-1": {
+            "title": "Toegankelijke info",
+            "content": "Eerlijk, duidelijk en zonder medische overload. Over hormonen, cyclus, anticonceptie, energie, balans en mentaal welzijn."
         },
-        "confirmation-dialog": {
-            "title": "Bent u zeker?",
-            "confirm-button": "Bevestigen",
-            "cancel-button": "Annuleren"
+        "card-2": {
+            "title": "Huiselijke workshops",
+            "content": "Intieme, gezellige samenkomsten waar je leert én ontspant. Altijd laagdrempelig, met ruimte voor vragen en echte gesprekken."
         },
-        "json-input": {
-            "error-message": "Ongeldige JSON, kan niet formatteren"
+        "card-3": {
+            "title": "Verbinding & herkenning",
+            "content": "Je hoort verhalen van andere vrouwen en ervaart: \"Oh…. ik ben niet de enige.\" Dat alleen al geeft zoveel rust."
         },
-        "period-type-selector": {
-            "day": "Dag",
-            "week": "Week",
-            "month": "Maand"
+        "footer": "En ofcourse... gezonde versnaperingen en een goede sfeer",
+        "spider": {
+            "title": "topics die aan bod komen",
+            "content-1": "Je hormonen",
+            "content-2": "Je cyclus",
+            "content-3": "Veelvoorkomende klachten",
+            "content-4": "Energie",
+            "content-5": "Hormonale anticonceptie",
+            "content-6": "Praktische voedingstips"
         },
-        "enums": {
-            "calendar-event-frequency": {
-                "daily": "Dagelijks",
-                "weekly": "Wekelijks",
-                "monthly": "Maandelijks"
+        "important": {
+            "title": "Waarom dit belangrijk is",
+            "content": "Als vrouw groeien we op met het idee dat onze hormonen “lastig” zijn en onze klachten ”normaal”. Alsof acné, moodswings en hevige krampen horen bij het vrouw-zijn. En dat leert ons vooral één ding: twijfelen aan ons eigen lichaam. We minimaliseren signalen, drukken gevoelens weg en proberen “gewoon door te doen” - zelfs als ons lichaam luid en duidelijk iets probeert te vertellen.\n\nBij Hormooncafé leer je opnieuw luisteren naar je lichaam - niet vanuit angst of controle, wel vanuit kennis, zachtheid en verbinding. Je ontdekt hoe je hormonale cyclus écht werkt, wat normaal is en wat niet en hoe je kleine veranderingen kan aanbrengen die je leven merkbaar lichter maken.\n\nZodat je:<ul><li>Meer energie ervaart</li><li>Duidelijker je grenzen voelt</li><li>Rust vindt in je cyclus</li><li>Minder het gevoel hebt dat je “faalt”</li><li>Meer zachtheid ontwikkelt voor jezelf</li></ul>\n\nDit gaat niet over perfectie. <b>Dit gaat over terug thuiskomen in je lichaam.</b>"
+        },
+        "for-you": {
+            "title": "Iets voor jou?",
+            "list": {
+                "title": "Hormooncafé is iets voor jou als je...",
+                "item-1": "gestopt bent met hormonale anticonceptie (of eraan denkt)",
+                "item-2": "je cyclus wil leren begrijpen",
+                "item-3": "struggles ervaart zoals moodswings, acné, onregelmatigheid",
+                "item-4": "je soms overweldigd voelt door alle online informatie",
+                "item-5": "op zoek bent naar een warme, herkenbare community"
             },
-            "calendar-event-weekday": {
-                "monday": "Maandag",
-                "tuesday": "Dinsdag",
-                "wednesday": "Woensdag",
-                "thursday": "Donderdag",
-                "friday": "Vrijdag",
-                "saturday": "Zaterdag",
-                "sunday": "Zondag"
-            }
+            "button": "SCHRIJF JE IN"
         }
     },
-    "main-navigation": {
-        "header": {
-            "title": "Lemon Studio",
-            "subtitle": "Beheerplatform"
-        },
-        "dashboard": {
-            "title": "Dashboard"
-        },
-        "authors": {
-            "title": "Auteurs"
-        },
-        "publishers": {
-            "title": "Uitgevers"
-        },
-        "books": {
-            "title": "Boeken"
-        },
-        "system": {
-            "title": "Systeem",
-            "jobs": {
-                "title": "Job monitor"
-            },
-            "scheduled-jobs": {
-                "title": "Geplande taken"
-            }
-        },
-        "user": {
-            "sign-out": {
-                "title": "Afmelden"
-            }
-        },
-        "calendar": {
-            "title": "Kalender",
-            "overview": {
-                "title": "Kalender"
-            },
-            "groups": {
-                "title": "Kalender groepen"
-            }
-        }
+    "agenda-section": {
+        "title": "Cyclus 101            €39",
+        "content": "Wanneer: zondag 1 februari 2026, 9:00 - 12:00\nWaar: Aume, Brasschaat\nTaal: Nederlands\n\nMet deze workshop investeer je niet enkel in kennis, maar in begrip voor je eigen lichaam.\n\nJe krijgt heldere informatie over je lichaam en hormonen, praktische handvaten rond voeding, ruimte om vragen te stellen in intieme groep én een verbindende activiteit om af te ronden. Je hebt geen voorkennis nodig, wel gezonde interesse.\n\nExacte locatie en info, krijg je na je boeking!\n\nVoor zwangerschap of menopauze komen in de toekomst aparte workshops.\n\n*geen terugbetalingen, je mag wel iemand anders in je plaats sturen.",
+        "button": "BOEK JE PLEK"
     },
-    "access-denied": {
-        "title": "Toegang geweigerd",
-        "description": "Je hebt geen toegang tot deze pagina.",
-        "actions": {
-            "go-to-home-page": "Ga naar de startpagina",
-            "sign-out": "Afmelden"
-        }
+    "about-me-section": {
+        "section-1": {
+            "title": "\"Hormooncafé ontstond uit mijn eigen zoektocht\"",
+            "content": "Als 13-jarige tiener, leerde ik op school over de pil - en vooral welke gemakken dat het met zich mee zou brengen. Geen last van krampen. Minder bloedverlies? “Sign me up!”, dacht ik dan. En zo gezegd zo gedaan, de huisarts schreef me de pil voor. Na 7 jaar zoeken naar een juiste dosis, het uittesten van talloze pillen en vele donkere periodes zonder aanleiding - besliste ik over te schakelen naar een hormoonspiraal. Dit ging aanvankelijk goed - tot ik last kreeg van krampen en vooral heel veel acné. Na mijn zoveelste mental breakdown besloot ik het hormonale anticonceptieverhaal helemaal van tafel te schuiven.\n\nPlots kwam ik als 24-jarige opnieuw oog in oog te staan met mijn lichaam. Iets wat al zo lang van mij was, maar nu zo onbekend voelde. Ik liep verloren in de overvloed van (vaak tegenstrijdige) online informatie. Ik stortte me in boeken, artikels en een opleiding - en ontdekte een hele nieuwe wereld. Een die naar mijn gevoel, veel toegankelijker zou moeten zijn voor (jonge) vrouwen.",
+            "footer": "En zo werd Hormooncafé geboren."
+        },
+        "section-2": {
+            "content-1": "Ik ben Sofie - geschoold als personal trainer, psychologisch consulent en hormooncoach in opleiding.\n\nOp mijn sociale media platformen deel ik openhartig over mentale gezondheid, zelfacceptatie en het zoeken naar balans in je twintigerjaren.",
+            "mission": "Mijn missie?",
+            "content-2": "<i>Ik wil vrouwen opnieuw verbinden met hun lichaam.</i>\nDaarom maak ik hormonen, cycluskennis en vrouw-zijn bespreekbaar— zonder taboes of oordelen.\n\nJe cyclus is zoveel meer dan het moment waarop je menstruatie start. Ze vertelt je iets over je energie, je grenzen, je gezondheid én over hoe je je voelt in je dagelijks leven.\n\nDie kennis is niet alleen belangrijk wanneer je aan kinderen denkt, maar op élk moment in je leven.\n<b>Elke vrouw verdient het om haar lichaam te begrijpen, om zich gehoord te voelen en om met vertrouwen in haar eigen ritme te kunnen staan.</b>"
+        },
+        "footer": "Hormooncafé is mijn manier om die missie tastbaar te maken - live, offline, en samen met jou."
     },
-    "users": {
-        "overview": {
-            "0": {
-                "title": "Gebruikers",
-                "actions": {
-                    "create": "Gebruiker uitnodigen"
-                },
-                "table": {
-                    "headers": {
-                        "e-mail": "E-mail",
-                        "role": "Rol",
-                        "status": "Status",
-                        "actions": "Acties"
-                    },
-                    "actions": {
-                        "edit": "Bewerken"
-                    }
-                }
-            }
-        }
-    },
-    "author": {
-        "common": {
-            "fields": {
-                "id": {
-                    "label": "ID"
-                },
-                "name": {
-                    "label": "Naam"
-                },
-                "created-at": {
-                    "label": "Aangemaakt op"
-                },
-                "updated-at": {
-                    "label": "Bijgewerkt op"
-                }
-            }
-        },
-        "create": {
-            "0": {
-                "title": "Auteur toevoegen"
-            }
-        },
-        "overview": {
-            "0": {
-                "title": "Auteurs"
-            },
-            "actions": {
-                "create": "Auteur toevoegen"
-            }
-        },
-        "details": {
-            "0": {
-                "title": "Auteur: {name}",
-                "details": {
-                    "details": "Details",
-                    "created-at": "Aangemaakt op",
-                    "updated-at": "Bijgewerkt op",
-                    "activity-log": "Activiteitenlog"
-                }
-            },
-            "linked-books": {
-                "title": "Boeken van deze auteur",
-                "actions": {
-                    "create": "Boek toevoegen"
-                }
-            }
-        }
-    },
-    "publisher": {
-        "common": {
-            "fields": {
-                "id": {
-                    "label": "ID"
-                },
-                "name": {
-                    "label": "Naam"
-                },
-                "address": {
-                    "label": "Adres"
-                },
-                "created-at": {
-                    "label": "Aangemaakt op"
-                },
-                "updated-at": {
-                    "label": "Bijgewerkt op"
-                }
-            }
-        },
-        "create": {
-            "0": {
-                "title": "Uitgever toevoegen"
-            }
-        },
-        "overview": {
-            "0": {
-                "title": "Uitgevers"
-            },
-            "actions": {
-                "create": "Uitgever toevoegen"
-            }
-        },
-        "details": {
-            "0": {
-                "title": "Uitgever: {name}",
-                "details": {
-                    "details": "Details",
-                    "created-at": "Aangemaakt op",
-                    "updated-at": "Bijgewerkt op",
-                    "activity-log": "Activiteitenlog"
-                }
-            }
-        }
-    },
-    "book": {
-        "common": {
-            "fields": {
-                "id": {
-                    "label": "ID"
-                },
-                "title": {
-                    "label": "Titel"
-                },
-                "description": {
-                    "label": "Beschrijving"
-                },
-                "publish-date": {
-                    "label": "Publicatiedatum",
-                    "placeholder": "Kies een datum"
-                },
-                "number-of-pages": {
-                    "label": "Aantal pagina's"
-                },
-                "available-as-ebook": {
-                    "label": "Beschikbaar als e-boek"
-                },
-                "cover-type": {
-                    "label": "Omslagtype",
-                    "placeholder": "Kies een omslagtype",
-                    "options": {
-                        "paperback": "Paperback",
-                        "hardcover": "Hardcover"
-                    }
-                },
-                "author": {
-                    "label": "Auteur",
-                    "placeholder": "Kies een auteur",
-                    "unselect": "Verwijder",
-                    "no-results": "Geen auteurs gevonden"
-                },
-                "publisher": {
-                    "label": "Uitgever",
-                    "placeholder": "Kies een uitgever",
-                    "unselect": "Verwijder",
-                    "no-results": "Geen uitgevers gevonden"
-                },
-                "created-at": {
-                    "label": "Aangemaakt op"
-                },
-                "updated-at": {
-                    "label": "Bijgewerkt op"
-                },
-                "author-names": {
-                    "label": "Auteurs"
-                },
-                "publisher-name": {
-                    "label": "Uitgever"
-                }
-            }
-        },
-        "create": {
-            "0": {
-                "title": "Boek toevoegen"
-            }
-        },
-        "overview": {
-            "0": {
-                "title": "Boeken"
-            },
-            "actions": {
-                "create": "Boek toevoegen",
-                "sync": "Boeken synchroniseren"
-            }
-        },
-        "details": {
-            "0": {
-                "title": "Boek: {name}",
-                "details": {
-                    "details": "Details",
-                    "created-at": "Aangemaakt op",
-                    "updated-at": "Bijgewerkt op",
-                    "activity-log": "Activiteitenlog"
-                }
-            }
-        }
-    },
-    "job": {
-        "common": {
-            "fields": {
-                "name": {
-                    "label": "Naam"
-                },
-                "job-key": {
-                    "label": "Taak",
-                    "placeholder": "Kies een taak"
-                },
-                "data": {
-                    "label": "Data (JSON)",
-                    "error-message": "Ongeldige JSON"
-                },
-                "started-at": {
-                    "label": "Gestart op"
-                },
-                "completed-at": {
-                    "label": "Voltooid op"
-                },
-                "status": {
-                    "label": "Status"
-                },
-                "created-at": {
-                    "label": "Aangemaakt op"
-                },
-                "updated-at": {
-                    "label": "Bijgewerkt op"
-                },
-                "total-items": {
-                    "label": "Totaal aantal items"
-                },
-                "successful-items": {
-                    "label": "Aantal succesvolle items"
-                },
-                "failed-items": {
-                    "label": "Aantal mislukte items"
-                },
-                "summary": {
-                    "label": "Samenvatting"
-                },
-                "progress": {
-                    "label": "Voortgang"
-                },
-                "duration": {
-                    "label": "Duur"
-                }
-            }
-        },
-        "status": {
-            "PENDING": "In afwachting",
-            "IN_PROGRESS": "Bezig",
-            "COMPLETED": "Voltooid",
-            "FAILED": "Mislukt",
-            "CANCELED": "Geannuleerd"
-        },
-        "overview": {
-            "0": {
-                "title": "Job Monitor",
-                "actions": {
-                    "execute": "Taak uitvoeren"
-                }
-            }
-        },
-        "execute": {
-            "0": {
-                "title": "Taak uitvoeren"
-            }
-        },
-        "details": {
-            "0": {
-                "title": "{name}",
-                "lead": "Een gedetailleerd overzicht van de voortgang van een job.",
-                "loading": "Laden...",
-                "cancel-button": {
-                    "label": "Annuleer taak",
-                    "confirmation-dialog-title": "Taak annuleren",
-                    "confirmation-dialog-message": "Weet je zeker dat je deze taak wilt annuleren?"
-                },
-                "details": {
-                    "items-processed": "Items verwerkt",
-                    "items-failed": "{amount} items mislukt",
-                    "name": "Naam",
-                    "started-at": "Gestart op",
-                    "completed-at": "Voltooid op",
-                    "total-items": "Totaal aantal items",
-                    "successful-items": "Aantal succesvolle items",
-                    "failed-items": "Aantal mislukte items",
-                    "summary": "Samenvatting",
-                    "progress": "Voortgang",
-                    "remaining": "Resterende tijd",
-                    "duration": "Duur"
-                },
-                "data": {
-                    "title": "Data",
-                    "lead": "De data die is gebruikt bij het uitvoeren van deze job.",
-                    "no-data": "Geen data beschikbaar"
-                },
-                "tabs": {
-                    "metadata": {
-                        "title": "Metadata",
-                        "status": "Status",
-                        "created-at": "Aangemaakt op",
-                        "updated-at": "Bijgewerkt op",
-                        "scheduled-job": "Geplande taak",
-                        "go-to-scheduled-job": "Ga naar geplande taak"
-                    },
-                    "history": {
-                        "title": "Geschiedenis"
-                    }
-                },
-                "messages": {
-                    "title": "Berichten",
-                    "lead": "De berichten die zijn gelogd bij deze job."
-                },
-                "1": {
-                    "title": "Logs"
-                }
-            }
-        }
-    },
-    "scheduled-job": {
-        "common": {
-            "fields": {
-                "name": {
-                    "label": "Naam"
-                },
-                "schedule": {
-                    "label": "Schema"
-                },
-                "job-key": {
-                    "label": "Taak",
-                    "placeholder": "Kies een taak"
-                },
-                "data": {
-                    "label": "Data (JSON)",
-                    "error-message": "Ongeldige JSON"
-                },
-                "active": {
-                    "label": "Actief"
-                },
-                "created-at": {
-                    "label": "Aangemaakt op"
-                },
-                "updated-at": {
-                    "label": "Bijgewerkt op"
-                }
-            }
-        },
-        "schedule-description": {
-            "invalid": "Ongeldig schema"
-        },
-        "overview": {
-            "0": {
-                "title": "Geplande taken",
-                "actions": {
-                    "create": "Geplande taak toevoegen"
-                }
-            }
-        },
-        "create": {
-            "0": {
-                "title": "Geplande taak toevoegen"
-            }
-        },
-        "details": {
-            "0": {
-                "title": "Geplande taak: {name}",
-                "tabs": {
-                    "schedule": "Schema",
-                    "data": "Data"
-                },
-                "delete-button": {
-                    "label": "Geplande taak",
-                    "confirmation-dialog-title": "Geplande taak verwijderen",
-                    "confirmation-dialog-message": "Weet je zeker dat je deze geplande taak wilt verwijderen?"
-                },
-                "details": {
-                    "created-at": "Aangemaakt op",
-                    "updated-at": "Bijgewerkt op",
-                    "active": "Actief",
-                    "details": "Details",
-                    "activity-log": "Activiteitenlog"
-                }
-            }
-        }
-    },
-    "dashboard": {
-        "title": "Dashboard"
-    },
-    "csp": {
-        "overview": {
-            "0": {
-                "title": "CSP-monitor"
-            }
-        }
-    },
-    "calendar": {
-        "common": {
-            "fields": {
-                "calendar-group-id": {
-                    "label": "Kalender"
-                },
-                "title": {
-                    "label": "Titel"
-                },
-                "display-name": {
-                    "label": "Titel"
-                },
-                "description": {
-                    "label": "Beschrijving"
-                },
-                "start-date-time": {
-                    "label": "Begin datum en tijd",
-                    "placeholder": "Kies een datum en tijd"
-                },
-                "start-date-time-recurring-instance": {
-                    "label": "Begin datum en tijd van het eerste voorkomen",
-                    "placeholder": "Kies een datum en tijd"
-                },
-                "end-date-time": {
-                    "label": "Eind datum en tijd",
-                    "placeholder": "Kies een datum en tijd"
-                },
-                "end-date-time-recurring-instance": {
-                    "label": "Eind datum en tijd van het eerste voorkomen",
-                    "placeholder": "Kies een datum en tijd"
-                },
-                "color": {
-                    "label": "Kleur"
-                },
-                "is-recurring-event": {
-                    "label": "Terugkerend evenement"
-                },
-                "frequency": {
-                    "label": "Frequentie",
-                    "placeholder": "Kies een frequentie"
-                },
-                "every": {
-                    "label": "interval (om de x ...)"
-                },
-                "on-weekdays": {
-                    "label": "Dagen van de week"
-                },
-                "end-date-for-recurring-event": {
-                    "label": "Einddatum voor terugkerend evenement (inclusief)",
-                    "placeholder": "Kies een datum"
-                },
-                "calendar-group": {
-                    "label": "Kalender"
-                }
-            }
-        },
-        "fetch-error": "Fout bij het ophalen van kalendergegevens.",
-        "create": {
-            "title": "Evenement aanmaken",
-            "event-created-successfully": "Evenement succesvol aangemaakt.",
-            "recurring-event-created-successfully": "Terugkerend evenement succesvol aangemaakt."
-        },
-        "update": {
-            "title": "Evenement bijwerken",
-            "issue-loading-event": "Fout bij het laden van het evenement.",
-            "recurring-event-one-instance": "éénmalige aanpassing",
-            "recurring-event-all-instances": "Alles aanpassen",
-            "event-updated-successfully": "Evenement succesvol bijgewerkt."
-        },
-        "delete": {
-            "confirmation-dialog": {
-                "description": "Het verwijderen van dit evenement is permanent. Weet je zeker dat je door wilt gaan?"
-            },
-            "event-deleted-successfully": "Evenement succesvol verwijderd."
-        }
-    },
-    "calendar-groups": {
-        "common": {
-            "fields": {
-                "name": {
-                    "label": "Naam"
-                },
-                "color": {
-                    "label": "Kleur"
-                },
-                "created-at": {
-                    "label": "Aangemaakt op"
-                },
-                "updated-at": {
-                    "label": "Bijgewerkt op"
-                }
-            }
-        },
-        "overview": {
-            "title": "Kalender groepen",
-            "actions": {
-                "create": "Kalender groep aanmaken"
-            }
-        },
-        "create": {
-            "title": "Kalender groep aanmaken"
-        },
-        "details": {
-            "title": "Kalender groep: {name}",
-            "actions": {
-                "delete": {
-                    "label": "Kalender groep verwijderen",
-                    "title": "Kalender groep verwijderen",
-                    "description": "Je staat op het punt {name} te verwijderen. Hieronder kan je kiezen of de bestaande evenementen behouden of verwijderd moeten worden. Als je ervoor kiest om ze te behouden dan zullen gelinkte evenementen niet langer gekoppeld zijn aan deze kalender groep.",
-                    "keep-and-unlink-events": "Evenementen behouden",
-                    "delete-button-label": "Verwijderen",
-                    "cancel-button-label": "Annuleren"
-                }
-            },
-            "details": {
-                "title": "Details",
-                "created-at": "Aangemaakt op",
-                "updated-at": "Bijgewerkt op"
-            },
-            "activity-log": {
-                "title": "Activiteitenlog"
-            }
-        }
+    "contact-section": {
+        "title": "CONTACTEER MIJ",
+        "action": "Voor bijkomende vragen of eventuele samenwerkingen kan je me steeds confacteren op:"
     }
 }
