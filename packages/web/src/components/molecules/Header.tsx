@@ -34,7 +34,7 @@ export function Header({ navigation }: HeaderProps) {
                         <NavigationMenuItem key={item.title}>
                             <NavigationMenuLink
                                 asChild
-                                className="text-xl font-special data-[active=true]:text-primary-foreground hover:text-primary-foreground focus:text-primary-foreground data-[state=open]:text-primary-foreground"
+                                className="text-xl font-special font-bold data-[active=true]:text-primary-foreground hover:text-primary-foreground focus:text-primary-foreground data-[state=open]:text-primary-foreground"
                             >
                                 <Link href={item.href}>{item.title}</Link>
                             </NavigationMenuLink>

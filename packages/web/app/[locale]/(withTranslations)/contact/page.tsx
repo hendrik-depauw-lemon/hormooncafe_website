@@ -15,9 +15,9 @@ export default async function Page() {
                 height={1365}
             />
             <div className="flex flex-col">
-                <span className="font-special text-accent-foreground">{t('action')}</span>
+                <span className="font-special font-bold text-accent-foreground">{t('action')}</span>
                 <a
-                    className="font-special text-accent-foreground underline"
+                    className="font-special font-bold text-accent-foreground underline"
                     href="mailto:info@hormooncafe.be"
                 >
                     info@hormooncafe.be

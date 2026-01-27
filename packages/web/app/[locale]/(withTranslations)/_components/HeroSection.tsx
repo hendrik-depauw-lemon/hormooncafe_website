@@ -40,12 +40,12 @@ export function HeroSection() {
             </CarouselContent>
             <div className="absolute top-0 flex flex-col items-center w-full gap-16 p-12 text-center">
                 <H1 className="text-primary-foreground">{t('title')}</H1>
-                <Lead className="font-special">{t('subtitle')}</Lead>
+                <Lead className="font-special font-bold">{t('subtitle')}</Lead>
                 <Button asChild>
                     <Link href="/workshops">{t('cta-button')}</Link>
                 </Button>
                 <div className="mt-48">
-                    <Lead className="bg-primary py-2 px-4 rounded-md font-special">
+                    <Lead className="bg-primary py-2 px-4 rounded-md font-special font-bold">
                         {t('footer')}
                     </Lead>
                 </div>

@@ -21,7 +21,9 @@ export default async function Page() {
                             className="w-full lg:basis-1/3 bg-primary rounded-md text-center"
                         >
                             <div className="bg-secondary rounded-md py-8">
-                                <span className="font-special">{t(`card-${num}.title`)}</span>
+                                <span className="font-special font-bold">
+                                    {t(`card-${num}.title`)}
+                                </span>
                             </div>
                             <div className="p-6">
                                 <p>{t(`card-${num}.content`)}</p>
@@ -29,12 +31,12 @@ export default async function Page() {
                         </div>
                     ))}
                 </div>
-                <Lead className="text-secondary font-special text-base text-center">
+                <Lead className="text-secondary font-special font-bold text-base text-center">
                     {t('footer')}
                 </Lead>
             </div>
 
-            <div className="grid grid-cols-6 gap-2 md:gap-12 text-center text-primary-foreground font-special mx-2 md:mx-12 md:break-normal">
+            <div className="grid grid-cols-6 gap-2 md:gap-12 text-center text-primary-foreground font-special font-bold mx-2 md:mx-12 md:break-normal">
                 <div className="col-start-2 col-span-2 bg-primary rounded-md py-4 px-2">
                     {t('spider.content-1')}
                 </div>
