@@ -62,7 +62,7 @@
             "title": "topics die aan bod komen",
             "content-1": "Je hormonen",
             "content-2": "Je cyclus",
-            "content-3": "Veelvoorkomende klachten",
+            "content-3": "Veel\u00ADvoorkomende klachten",
             "content-4": "Energie",
             "content-5": "Hormonale anticonceptie",
             "content-6": "Praktische voedingstips"
@@ -104,6 +104,6 @@
     },
     "contact-section": {
         "title": "CONTACTEER MIJ",
-        "action": "Voor bijkomende vragen of eventuele samenwerkingen kan je me steeds confacteren op:"
+        "action": "Voor bijkomende vragen of eventuele samenwerkingen kan je me steeds contacteren op:"
     }
 }

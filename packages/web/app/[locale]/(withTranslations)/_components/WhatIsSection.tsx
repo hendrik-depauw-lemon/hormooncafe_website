@@ -9,10 +9,10 @@ export function WhatIsSection() {
     const t = useTranslations('what-is-section');
 
     return (
-        <div className="flex flex-col gap-12 items-center">
+        <div className="flex flex-col gap-12 items-center xl:mx-48">
             <H2 className="text-primary">{t('title')}</H2>
 
-            <div className="self-end rounded-l-md bg-secondary text-secondary-foreground max-w-11/12 lg:max-w-7/12 flex flex-row">
+            <div className="self-end rounded-l-md bg-secondary text-secondary-foreground max-w-11/12 lg:max-w-10/12 flex flex-row">
                 <div className="p-6 lg:p-12 basis-2/3 flex flex-col gap-4">
                     <p className="text-sm">{t('card-1.content-1')}</p>
                     <p className="text-sm">{t('card-1.content-2')}</p>
@@ -31,7 +31,7 @@ export function WhatIsSection() {
                 </div>
             </div>
 
-            <div className="self-start rounded-r-md bg-primary max-w-11/12 lg:max-w-7/12 flex flex-row">
+            <div className="self-start rounded-r-md bg-primary max-w-11/12 lg:max-w-10/12 flex flex-row">
                 <div className="basis-1/3">
                     <Image
                         src="/IMG_2411.jpg"
@@ -56,7 +56,7 @@ export function WhatIsSection() {
                 </div>
             </div>
 
-            <div className="self-end rounded-l-md bg-secondary text-secondary-foreground max-w-11/12 lg:max-w-7/12 flex flex-row max-h-72">
+            <div className="self-end rounded-l-md bg-secondary text-secondary-foreground max-w-11/12 lg:max-w-10/12 flex flex-row md:max-h-72">
                 <div className="p-6 lg:p-12 basis-2/3 flex flex-col gap-4">
                     <H2 className="text-primary">{t('card-3.title')}</H2>
                     <p className="text-sm font-bold">{t('card-3.content-1')}</p>

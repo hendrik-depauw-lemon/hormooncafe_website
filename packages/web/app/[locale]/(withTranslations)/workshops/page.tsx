@@ -34,26 +34,26 @@ export default async function Page() {
                 </Lead>
             </div>
 
-            <div className="grid grid-cols-6 gap-2 md:gap-12 text-center text-primary-foreground font-special mx-2 md:mx-12 break-all md:break-normal">
-                <div className="col-start-2 col-span-2 bg-primary rounded-md p-4">
+            <div className="grid grid-cols-6 gap-2 md:gap-12 text-center text-primary-foreground font-special mx-2 md:mx-12 md:break-normal">
+                <div className="col-start-2 col-span-2 bg-primary rounded-md py-4 px-2">
                     {t('spider.content-1')}
                 </div>
-                <div className="col-start-4 col-span-2 bg-primary rounded-md p-4">
+                <div className="col-start-4 col-span-2 bg-primary rounded-md py-4 px-2">
                     {t('spider.content-2')}
                 </div>
-                <div className="col-start-1 col-span-2 bg-primary rounded-md p-4">
+                <div className="col-start-1 col-span-2 bg-primary rounded-md py-4 px-2">
                     {t('spider.content-3')}
                 </div>
-                <div className="col-start-3 col-span-2 text-secondary p-4 text-lg">
+                <div className="col-start-3 col-span-2 text-secondary py-4 px-2 text-lg">
                     {t('spider.title')}
                 </div>
-                <div className="col-start-5 col-span-2 bg-primary rounded-md p-4">
+                <div className="col-start-5 col-span-2 bg-primary rounded-md py-4 px-2">
                     {t('spider.content-4')}
                 </div>
-                <div className="col-start-2 col-span-2 bg-primary rounded-md p-4">
+                <div className="col-start-2 col-span-2 bg-primary rounded-md py-4 px-2">
                     {t('spider.content-5')}
                 </div>
-                <div className="col-start-4 col-span-2 bg-primary rounded-md p-4">
+                <div className="col-start-4 col-span-2 bg-primary rounded-md py-4 px-2">
                     {t('spider.content-6')}
                 </div>
             </div>
