@@ -85,9 +85,16 @@
         }
     },
     "agenda-section": {
-        "title": "Cyclus 101            €39",
-        "content": "Wanneer: zondag 1 februari 2026, 9:00 - 12:00\nWaar: Aume, Brasschaat\nTaal: Nederlands\n\nMet deze workshop investeer je niet enkel in kennis, maar in begrip voor je eigen lichaam.\n\nJe krijgt heldere informatie over je lichaam en hormonen, praktische handvaten rond voeding, ruimte om vragen te stellen in intieme groep én een verbindende activiteit om af te ronden. Je hebt geen voorkennis nodig, wel gezonde interesse.\n\nExacte locatie en info, krijg je na je boeking!\n\nVoor zwangerschap of menopauze komen in de toekomst aparte workshops.\n\n*geen terugbetalingen, je mag wel iemand anders in je plaats sturen.",
-        "button": "BOEK JE PLEK"
+        "1": {
+            "title": "Cyclus 101            €39",
+            "content": "Wanneer: zondag 22 maart 2026, 8:30 - 11:30\nWaar: Aume, Brasschaat\nTaal: Nederlands\n\nMet deze workshop investeer je niet enkel in kennis, maar in begrip voor je eigen lichaam.\n\nJe krijgt heldere informatie over je lichaam en hormonen, praktische handvaten rond voeding, ruimte om vragen te stellen in intieme groep én een verbindende activiteit om af te ronden. Je hebt geen voorkennis nodig, wel gezonde interesse.\n\nExacte locatie en info, krijg je na je boeking!\n\nVoor zwangerschap of menopauze komen in de toekomst aparte workshops.\n\n*geen terugbetalingen, je mag wel iemand anders in je plaats sturen.",
+            "button": "BOEK JE PLEK"
+        },
+        "2": {
+            "title": "Cyclus 101            €39",
+            "content": "Wanneer: zondag 11 april 2026, 13:30 - 16:30\nWaar: Aume, Brasschaat\nTaal: Nederlands\n\nMet deze workshop investeer je niet enkel in kennis, maar in begrip voor je eigen lichaam.\n\nJe krijgt heldere informatie over je lichaam en hormonen, praktische handvaten rond voeding, ruimte om vragen te stellen in intieme groep én een verbindende activiteit om af te ronden. Je hebt geen voorkennis nodig, wel gezonde interesse.\n\nExacte locatie en info, krijg je na je boeking!\n\nVoor zwangerschap of menopauze komen in de toekomst aparte workshops.\n\n*geen terugbetalingen, je mag wel iemand anders in je plaats sturen.",
+            "button": "BOEK JE PLEK"
+        }
     },
     "about-me-section": {
         "section-1": {
